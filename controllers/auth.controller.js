@@ -8,12 +8,12 @@ import {
 export const register =async(req,res) =>{
    
     try {
-        const { email, password } = req.body;
+        const {nombre,apellido,direccion, email, password ,tipo_usuario,tipo_login} = req.body;
 
         let user = await User.findOne({ email });
         if (user) throw new Error("Email ya registrado 😒");
 
-        user = new User({ email, password });
+        user = new User({nombre,apellido,direccion, email, password ,tipo_usuario,tipo_login });
         await user.save();
 
         // Generar token
@@ -43,7 +43,7 @@ export const login = async (req, res) => {
           const { token, expiresIn } = generateToken(user.id);
           generateRefreshToken(user.id, res);
          
-          return res.json({ token, expiresIn });
+          return res.json({ token, expiresIn,user});
     } catch (error) {
         console.log(error);
         return res.status(403).json({ error: error.message });

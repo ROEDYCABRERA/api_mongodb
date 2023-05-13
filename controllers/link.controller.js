@@ -9,6 +9,15 @@ export const getLinks = async (req, res) => {
         return res.status(500).json({ error: "Error de servidor" });
     }
 };
+export const getDatos = async (req, res) => {
+    try {
+        const links = await Link.find();
+        return res.json({ links });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Error de servidor" });
+    }
+};
 
 export const getLink = async (req, res) => {
     try {

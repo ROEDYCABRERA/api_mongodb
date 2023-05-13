@@ -8,8 +8,8 @@
     </head>
     <body>
         <form id="form">
-            <input type="email" value="roedy01@email.com" id="email" />
-            <input type="password" value="123456" id="password" />
+            <input type="email" value="roedycabrera@email.com" id="email" />
+            <input type="password" value="123456789" id="password" />
             <button type="submit">Acceder</button>
         </form>
 
@@ -39,7 +39,7 @@
 
                     const { token } = await res.json();
 
-                    //localStorage.setItem("token", token);
+                    localStorage.setItem("token", token);
                 } catch (error) {
                     console.log(error);
                 }

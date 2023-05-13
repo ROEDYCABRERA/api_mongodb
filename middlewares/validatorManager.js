@@ -50,7 +50,7 @@ export const bodyRegisterValidator = [
     body("password", "Mínimo 6 carácteres").trim().isLength({ min: 6 }),
     body("password", "Formato de password incorrecta").custom(
         (value, { req }) => {
-            if (value !== req.body.repassword) {
+            if (value !== req.body.password) {
                 throw new Error("No coinciden las contraseñas");
             }
             return value;
@@ -60,6 +60,43 @@ export const bodyRegisterValidator = [
 ];
 export const paramNanoLinkValidator = [
     param("nanoLink", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+        
+    validationResultExpress,
+];
+
+export const paramProcedureValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];
+export const bodyProcedureValidator = [
+    body("descripcion", "Formato de descripcion incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+   body("precio", "Formato de precio incorrecto")
+         .notEmpty(),
+         
+    validationResultExpress,
+];
+
+export const bodyMarcaValidator = [
+    body("Descripcion", "Formato de descripcion incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+   body("Nombre", "Formato de nombre incorrecto")
+        .notEmpty()
+        .isLength({ max: 50 }),
+                
+    validationResultExpress,
+];
+
+export const paramMarcaValidator = [
+    param("id", "Formato no válido (expressValidator)")
         .trim()
         .notEmpty()
         .escape(),

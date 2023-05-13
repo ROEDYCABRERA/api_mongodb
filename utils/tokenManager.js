@@ -21,13 +21,13 @@ export const generateRefreshToken = (uid, res) => {
             httpOnly: true,
             secure: !(process.env.MODO === "developer"),
             expires: new Date(Date.now() + expiresIn * 1000),
-           // sameSite: "none",
+          // sameSite: "none",
         });
-        // res.cookie("refreshToken", refreshToken, {
-        //     httpOnly: true,
-        //     secure: true,
-        //     expires: new Date(Date.now() + expiresIn * 1000),
-        // });
+        res.cookie("refreshToken", refreshToken, {
+           httpOnly: true,
+            secure: true,
+             expires: new Date(Date.now() + expiresIn * 1000),
+         });
     } catch (error) {
         console.log(error);
     }

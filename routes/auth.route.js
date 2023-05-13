@@ -13,7 +13,7 @@ import { bodyRegisterValidator,bodyLoginValidator } from "../middlewares/validat
 const router = Router();
 
 router.post("/register", bodyRegisterValidator,register);
-router.post( "/login", bodyLoginValidator,login);
+router.post("/login", bodyLoginValidator,login);
 
 router.get("/logout", logout);
 router.get("/protected", requireToken, infoUser);

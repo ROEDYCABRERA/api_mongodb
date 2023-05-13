@@ -2,6 +2,18 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema({
+    nombre: {
+        type: String,
+        required: [true, "El nombre es requerido"]
+    },
+    apellido: {
+        type: String,
+        required: true,
+    },
+    direccion : {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -14,6 +26,21 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+   
+    tipo_usuario : {
+        type: String,
+        required: true
+    },
+
+    tipo_login : {
+        type: String,
+        required: true
+    },
+   
+
+
+    
+
 });
 userSchema.pre("save", async function(next) {
     const user = this;

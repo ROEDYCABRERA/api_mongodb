@@ -4,7 +4,7 @@ import { Marca } from "../models/Marca.js";
 export const getDatos = async (req, res) => {
     try {
         
-        const marca = await Marca.find().sort( { Nombre: 1 } )
+        const marca = await Marca.find().sort( { Descripcion: 1 } )
 
 
         return res.json(marca);
@@ -16,12 +16,12 @@ export const getDatos = async (req, res) => {
 export const register =async(req,res) =>{
    
     try {
-        const {Nombre,Descripcion} = req.body;
+        const {Descripcion} = req.body;
 
-        let marca = await Marca.findOne({ Nombre });
-        if (marca) throw new Error("Nombre ya registrado 😒");
+        let marca = await Marca.findOne({ Descripcion });
+        if (marca) throw new Error("Descripcion ya registrado 😒");
 
-        marca = new Marca({Nombre,Descripcion });
+        marca = new Marca({Descripcion });
         await marca.save();
 
        
@@ -53,7 +53,7 @@ export const update =async(req,res) =>{
     try {
 
         const {id} = req.params;
-        let {Nombre,Descripcion} = req.body;
+        let {Descripcion} = req.body;
 
      
         const marca = await Marca.findById(id);
@@ -62,7 +62,6 @@ export const update =async(req,res) =>{
 
 
       
-        marca.Nombre = Nombre;
         marca.Descripcion = Descripcion;
         await marca.save();
 

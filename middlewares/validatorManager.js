@@ -88,10 +88,6 @@ export const bodyMarcaValidator = [
     body("Descripcion", "Formato de descripcion incorrecto")
          .notEmpty()
          .isLength({ max: 50 }),
-   body("Nombre", "Formato de nombre incorrecto")
-        .notEmpty()
-        .isLength({ max: 50 }),
-                
     validationResultExpress,
 ];
 

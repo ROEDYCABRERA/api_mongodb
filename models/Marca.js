@@ -5,7 +5,7 @@ const marcaSchema = new Schema({
    
     Descripcion: {
         type: String,
-        required: [true, "El nombre es requerido"],
+        required: [true, "El descripcion es requerido"],
     }
 });
 

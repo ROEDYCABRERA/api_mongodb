@@ -1,13 +1,13 @@
-import { Marca } from "../models/Marca.js";
+import { TipoVehiculo } from "../models/TipoVehiculo.js";
 
 
 export const getDatos = async (req, res) => {
     try {
         
-        const marca = await Marca.find().sort( { Descripcion: 1 } )
+        const tipoVehiculo = await TipoVehiculo.find().sort( { Descripcion: 1 } )
 
 
-        return res.json(marca);
+        return res.json(tipoVehiculo);
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: "Error de servidor" });
@@ -18,14 +18,14 @@ export const register =async(req,res) =>{
     try {
         const {Descripcion} = req.body;
 
-        let marca = await Marca.findOne({ Descripcion });
-        if (marca) throw new Error("Descripcion ya registrado 😒");
+        let tipoVehiculo = await TipoVehiculo.findOne({ Descripcion });
+        if (tipoVehiculo) throw new Error("Descripcion ya registrado 😒");
 
-        marca = new Marca({Descripcion });
-        await marca.save();
+        tipoVehiculo = new TipoVehiculo({Descripcion });
+        await tipoVehiculo.save();
 
        
-        return res.json({ marca });
+        return res.json({ tipoVehiculo });
     } catch (error) {
         console.log(error);
         return res.status(403).json({ error: error.message });
@@ -34,13 +34,13 @@ export const register =async(req,res) =>{
 export const remove = async (req, res) => {
     try {
         const {id} = req.params;
-        const marca = await Marca.findById(id);
+        const tipoVehiculo = await TipoVehiculo.findById(id);
        // console.log(link);
-        if (!marca) return res.status(404).json({ error: "no existe la marca" });
+        if (!tipoVehiculo) return res.status(404).json({ error: "no existe Tipo Vehiculo" });
       
        
-        await marca.remove();
-        return res.json({ marca });
+        await tipoVehiculo.remove();
+        return res.json({ tipoVehiculo });
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId")
@@ -56,17 +56,17 @@ export const update =async(req,res) =>{
         let {Descripcion} = req.body;
 
      
-        const marca = await Marca.findById(id);
+        const tipoVehiculo = await TipoVehiculo.findById(id);
 
-        if (!marca) return res.status(404).json({ error: "No existe la marca" });
+        if (!tipoVehiculo) return res.status(404).json({ error: "No existe Tipo Vehiculo" });
 
 
       
-        marca.Descripcion = Descripcion;
-        await marca.save();
+        tipoVehiculo.Descripcion = Descripcion;
+        await tipoVehiculo.save();
 
        
-        return res.json({marca}.marca);
+        return res.json({tipoVehiculo}.tipoVehiculo);
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId") {

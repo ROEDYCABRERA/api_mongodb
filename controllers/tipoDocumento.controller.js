@@ -1,13 +1,13 @@
-import { Marca } from "../models/Marca.js";
+import { TipoDocumento } from "../models/TipoDocumento.js";
 
 
 export const getDatos = async (req, res) => {
     try {
         
-        const marca = await Marca.find().sort( { Descripcion: 1 } )
+        const tipoDocumento = await TipoDocumento.find().sort( { Descripcion: 1 } )
 
 
-        return res.json(marca);
+        return res.json(tipoDocumento);
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: "Error de servidor" });
@@ -18,14 +18,14 @@ export const register =async(req,res) =>{
     try {
         const {Descripcion} = req.body;
 
-        let marca = await Marca.findOne({ Descripcion });
-        if (marca) throw new Error("Descripcion ya registrado 😒");
+        let tipoDocumento = await TipoDocumento.findOne({ Descripcion });
+        if (tipoDocumento) throw new Error("Descripcion ya registrado 😒");
 
-        marca = new Marca({Descripcion });
-        await marca.save();
+        tipoDocumento = new TipoDocumento({Descripcion });
+        await tipoDocumento.save();
 
        
-        return res.json({ marca });
+        return res.json({ tipoDocumento });
     } catch (error) {
         console.log(error);
         return res.status(403).json({ error: error.message });
@@ -34,13 +34,13 @@ export const register =async(req,res) =>{
 export const remove = async (req, res) => {
     try {
         const {id} = req.params;
-        const marca = await Marca.findById(id);
+        const tipoDocumento = await TipoDocumento.findById(id);
        // console.log(link);
-        if (!marca) return res.status(404).json({ error: "no existe la marca" });
+        if (!tipoDocumento) return res.status(404).json({ error: "no existe el Tipo de Documento" });
       
        
-        await marca.remove();
-        return res.json({ marca });
+        await tipoDocumento.remove();
+        return res.json({ tipoDocumento });
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId")
@@ -56,17 +56,17 @@ export const update =async(req,res) =>{
         let {Descripcion} = req.body;
 
      
-        const marca = await Marca.findById(id);
+        const tipoDocumento = await TipoDocumento.findById(id);
 
-        if (!marca) return res.status(404).json({ error: "No existe la marca" });
+        if (!tipoDocumento) return res.status(404).json({ error: "No existe el Tipo de Documento" });
 
 
       
-        marca.Descripcion = Descripcion;
-        await marca.save();
+        tipoDocumento.Descripcion = Descripcion;
+        await tipoDocumento.save();
 
        
-        return res.json({marca}.marca);
+        return res.json({tipoDocumento}.tipoDocumento);
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId") {

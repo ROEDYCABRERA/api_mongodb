@@ -98,3 +98,34 @@ export const paramMarcaValidator = [
         .escape(),
     validationResultExpress,
 ];
+
+export const bodyTipoDocumentoValidator = [
+    body("Descripcion", "Formato de descripcion incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+    validationResultExpress,
+];
+
+export const paramTipoDocumentoValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];
+
+
+export const bodyTipoVehiculoValidator = [
+    body("Descripcion", "Formato de descripcion incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+    validationResultExpress,
+];
+
+export const paramTipoVehiculoValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];

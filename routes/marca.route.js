@@ -3,7 +3,7 @@ import {
     register,
     getDatos,
     update,
-    removeProcedure
+    remove
 
 } from "../controllers/marca.controller.js";
 import { bodyMarcaValidator,paramMarcaValidator } from "../middlewares/validatorManager.js";
@@ -12,7 +12,7 @@ const router = Router();
 
 router.post("/register", bodyMarcaValidator,register);
 router.put("/:id",paramMarcaValidator,bodyMarcaValidator,update);
-router.delete("/:id" ,paramMarcaValidator,removeProcedure);
+router.delete("/:id" ,paramMarcaValidator,remove);
 router.get("/listar",requireToken,getDatos);
 
 export default router;

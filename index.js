@@ -4,6 +4,8 @@ import express from "express";
 import authRoutes from "./routes/auth.route.js";
 import procedureRouter from "./routes/procedure.route.js";
 import marcaRouter from "./routes/marca.route.js";
+import tipoDocumentoRouter from "./routes/tipoDocumento.route.js";
+import tipoVehiculoRouter from "./routes/tipoVehiculo.route.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -32,6 +34,8 @@ app.get('/', function (req, res) {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/procedure", procedureRouter);
 app.use("/api/v1/marca", marcaRouter);
+app.use("/api/v1/tipoDocumento", tipoDocumentoRouter);
+app.use("/api/v1/tipoVehiculo", tipoVehiculoRouter);
 //app.use("/api/v1/links", linkRouter);
 //app.use(express.static("public"));
 const PORT = process.env.PORT || 5000;

@@ -13,6 +13,7 @@ const linkSchema = new Schema({
         trim: true,
         unique: true,
     },
+    
     uid: {
         type: Schema.Types.ObjectId,
         ref: "User",

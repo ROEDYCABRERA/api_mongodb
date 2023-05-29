@@ -7,9 +7,76 @@ import marcaRouter from "./routes/marca.route.js";
 import tipoDocumentoRouter from "./routes/tipoDocumento.route.js";
 import tipoVehiculoRouter from "./routes/tipoVehiculo.route.js";
 import cookieParser from "cookie-parser";
-
+import { User } from "./models/User.js";
+import { TipoDocumento } from "./models/TipoDocumento.js";
+import { Vehiculo } from "./models/Vehiculo.js";
+import { TipoVehiculo } from "./models/TipoVehiculo.js";
+import { Marca } from "./models/Marca.js";
+import { VehiculoFoto  } from "./models/VehiculoFoto.js";
+import { Historia  } from "./models/History.js";
+import { Procedure  } from "./models/Procedure.js";
+import { Detalles  } from "./models/Detalles.js";
 const app = express();
 
+const tipoDocumento= await TipoDocumento.create({
+    Descripcion: 'CEDULA'
+
+});
+
+const procedimiento= await Procedure.create({
+    descripcion: 'INSTALACION',
+    precio:0
+
+});
+const tipovehiculo= await TipoVehiculo.create({
+    Descripcion: 'TIPO'
+
+});
+const marca= await Marca.create({
+    Descripcion: 'HONDA'
+
+});
+const foto= await VehiculoFoto .create({
+    imagen: 'foto'
+
+});
+
+const detalles= await Detalles .create({
+    Procedimiento: 'cambio de aceite',
+    ManoObra: 100,
+    PrecioRepuesto: 100,
+    Observacion: 'obervacion'
+});
+const historia= await Historia .create({
+    Mileage: 0,
+    Remarks: 'Remarks',
+    detalles:detalles._id,
+
+
+});
+const vehiculo= await Vehiculo.create({
+    Descripcion: 'VEHICULO',
+    tipovehiculo:tipovehiculo._id,
+    marca:marca._id,
+    foto:foto._id,
+    historia:historia._id,
+
+});
+
+const usuarioInicial= await User.create({
+    nombre: 'ROEDY',
+    apellido: 'CABRERA',
+    direccion :'LIMA',
+    email:'cabrera1545585lzz1@gmail.com',
+    password: '123456',
+    tipo_usuario : 'admin',
+    tipo_login :'admin',
+    tipodocumento:tipoDocumento._id,
+    procedimiento:procedimiento._id,
+    vehiculo:vehiculo._id,
+});
+
+console.log('creado',usuarioInicial)
 // const whiteList = [process.env.ORIGIN1];
 // app.use(
 //     cors({

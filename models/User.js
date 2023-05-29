@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
+let Schema = mongoose.Schema;
+
 const userSchema = new mongoose.Schema({
     nombre: {
         type: String,
@@ -35,6 +37,19 @@ const userSchema = new mongoose.Schema({
     tipo_login : {
         type: String,
         required: true
+    },
+
+    tipodocumento:{
+        type: Schema.Types.ObjectId,
+        ref: 'TipoDocumento'
+    },
+    procedimiento:{
+        type: Schema.Types.ObjectId,
+        ref: 'Procedure'
+    },
+    vehiculo:{
+        type: Schema.Types.ObjectId,
+        ref: 'Vehiculo'
     },
    
 

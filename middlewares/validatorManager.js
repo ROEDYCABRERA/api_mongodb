@@ -129,3 +129,11 @@ export const paramTipoVehiculoValidator = [
         .escape(),
     validationResultExpress,
 ];
+
+export const paramUsuarioValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];

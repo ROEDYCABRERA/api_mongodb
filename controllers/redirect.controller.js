@@ -6,8 +6,7 @@ export const redirectNanoLink = async (req, res) => {
         // console.log(nanoLink);
         const link = await Link.findOne({ nanoLink });
 
-        if (!link)
-            return res.status(404).json({ error: "No existe el nanoLink" });
+        if (!link)  return res.status(404).json({ error: "No existe el nanoLink" });
 
         return res.redirect(link.longLink);
     } catch (error) {

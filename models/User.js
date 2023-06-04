@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    telefono : {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -38,7 +42,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
+    imagen : String,
     tipodocumento:{
         type: Schema.Types.ObjectId,
         ref: 'TipoDocumento'
@@ -74,4 +78,5 @@ userSchema.pre("save", async function(next) {
 userSchema.methods.comparePassword = async function(candidatePassword) {
     return await bcrypt.compare(candidatePassword, this.password);
 };
+
 export const User = mongoose.model("User", userSchema);

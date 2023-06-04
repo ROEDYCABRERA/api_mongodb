@@ -1,20 +1,29 @@
 
 import { User } from "../models/User.js";
-import jwt from "jsonwebtoken";
 import {
     generateToken,
     generateRefreshToken,
 } from "../utils/tokenManager.js";
-import { TipoDocumento } from "../models/TipoDocumento.js";
 export const register =async(req,res) =>{
    
     try {
-        const {nombre,apellido,direccion, email, password ,tipo_usuario,tipo_login} = req.body;
+        if (!req.files)
+        return res.status(400).send('No files were uploaded.');
+
+        let imagen = req.files.imagen;
+
+        imagen.mv(`uploads/${imagen.name}`, (err) => {
+            if (err)
+            return res.status(500).send(err);
+
+        });
+       
+        const {nombre,apellido,direccion,telefono, email, password ,tipo_usuario,tipo_login} = req.body;
 
         let user = await User.findOne({ email });
         if (user) throw new Error("Email ya registrado 😒");
 
-        user = new User({nombre,apellido,direccion, email, password ,tipo_usuario,tipo_login });
+        user = new User({nombre,apellido,direccion,telefono,email, password ,tipo_usuario,tipo_login, imagen : imagen.name });
         await user.save();
 
         // Generar token
@@ -43,8 +52,8 @@ export const login = async (req, res) => {
           return res.status(403).json({ error: " Contraseña incorrecta" });
           const { token, expiresIn } = generateToken(user.id);
           generateRefreshToken(user.id, res);
-         
-          return res.json({ token, expiresIn,user});
+          const success  =true;
+          return res.json({success, token, expiresIn,user});
     } catch (error) {
         console.log(error);
         return res.status(403).json({ error: error.message });
@@ -77,8 +86,6 @@ export const getID = async (req, res) => {
         return res.status(500).json({ error: "error de servidor" });
     }
 };
-
-
 
 export const getDatos = async (req, res) => {
     try {

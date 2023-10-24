@@ -56,9 +56,9 @@ export const update =async(req,res) =>{
         const {id} = req.params;
     
      
-         let { Nombre,Descripcion } = req.body;
+         let {Id, Nombre,Descripcion } = req.body;
      
-        const tipoLibro = await TipoLibro.findById(id);
+        const tipoLibro = await TipoLibro.findById(Id);
 
         if (!tipoLibro) return res.status(404).json({ error: "No existe el Tipo de Libro" });
 

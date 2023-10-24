@@ -40,8 +40,8 @@ export const remove = async (req, res) => {
       
        
         await tipoLibro.remove();
-        const success  =true;
-        return res.json({ success });
+       
+        return res.json(200);
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId")

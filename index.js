@@ -33,7 +33,30 @@ const tipoLibro= await TipoLibro.create({
 
  });
 console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
 
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
+console.log('creado',tipoLibro)
 // const procedimiento= await Procedure.create({
 //     descripcion: 'INSTALACION',
 //     precio:0

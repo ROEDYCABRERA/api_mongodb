@@ -24,8 +24,8 @@ export const register =async(req,res) =>{
         tipoLibro = new TipoLibro({Nombre,Descripcion });
         await tipoLibro.save();
 
-       
-        return res.json({ tipoDocumento });
+          return res.json({ ok: true });
+        //return res.json({ tipoDocumento });
     } catch (error) {
         console.log(error);
         return res.status(403).json({ error: error.message });
@@ -54,6 +54,7 @@ export const update =async(req,res) =>{
     try {
 
         const {id} = req.params;
+        let {Nombre} = req.body;
         let {Descripcion} = req.body;
 
      
@@ -66,8 +67,8 @@ export const update =async(req,res) =>{
         tipoLibro.Descripcion = Descripcion;
         await tipoLibro.save();
 
-       
-        return res.json({tipoLibro}.tipoLibro);
+          return res.json({ ok: true });
+        //return res.json({tipoLibro}.tipoLibro);
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId") {

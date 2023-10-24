@@ -63,7 +63,7 @@ export const update =async(req,res) =>{
         if (!tipoLibro) return res.status(404).json({ error: "No existe el Tipo de Libro" });
 
 
-      
+        tipoLibro.Nombre = Nombre;
         tipoLibro.Descripcion = Descripcion;
         await tipoLibro.save();
 

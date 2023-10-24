@@ -54,9 +54,9 @@ export const update =async(req,res) =>{
     try {
 
         const {id} = req.params;
-        let {Nombre} = req.body;
-        let {Descripcion} = req.body;
-
+    
+     
+         let { Nombre,Descripcion } = req.body;
      
         const tipoLibro = await TipoLibro.findById(id);
 

@@ -11,7 +11,8 @@ import { requireToken } from "../middlewares/requireToken.js";
 const router = Router();
 
 router.post("/register", bodyTipoLibroValidator,register);
-router.put("/:id",paramTipoLibroValidator,bodyTipoLibroValidator,update);
+router.put("/update", bodyTipoLibroValidator,update);
+//router.put("/:id",paramTipoLibroValidator,bodyTipoLibroValidator,update);
 router.delete("/:id" ,paramTipoLibroValidator,remove);
 router.get("/listar",getDatos);
 

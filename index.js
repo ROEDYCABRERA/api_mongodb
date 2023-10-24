@@ -32,6 +32,12 @@ const tipoLibro= await TipoLibro.create({
      Descripcion: 'PALABRA DE DIOS'
 
  });
+const tipoLibro2= await TipoLibro.create({   
+     Nombre: 'BIBLIA' ,
+     Descripcion: 'PALABRA DE DIOS'
+
+ });
+console.log('creado',tipoLibro2)
 console.log('creado',tipoLibro)
 
 // const procedimiento= await Procedure.create({

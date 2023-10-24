@@ -113,6 +113,22 @@ export const paramTipoDocumentoValidator = [
         .escape(),
     validationResultExpress,
 ];
+export const paramTipoLibroValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];
+export const bodyTipoLibroValidator = [
+    body("Nombre", "Formato de nombre incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+         body("Descripcion", "Formato de descripcion incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+    validationResultExpress,
+];
 
 
 export const bodyTipoVehiculoValidator = [

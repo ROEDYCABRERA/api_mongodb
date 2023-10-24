@@ -7,6 +7,7 @@ import procedureRouter from "./routes/procedure.route.js";
 import marcaRouter from "./routes/marca.route.js";
 import tipoDocumentoRouter from "./routes/tipoDocumento.route.js";
 import tipoVehiculoRouter from "./routes/tipoVehiculo.route.js";
+import tipoLibroRouter from "./routes/tipoLibro.route.js";
 import cookieParser from "cookie-parser";
 import { User } from "./models/User.js";
 import { TipoDocumento } from "./models/TipoDocumento.js";
@@ -17,6 +18,8 @@ import { VehiculoFoto  } from "./models/VehiculoFoto.js";
 import { Historia  } from "./models/History.js";
 import { Procedure  } from "./models/Procedure.js";
 import { Detalles  } from "./models/Detalles.js";
+import { TipoLibro } from "./models/TipoLibro.js";
+
 const app = express();
 
 app.use(fileUpload({
@@ -24,10 +27,12 @@ app.use(fileUpload({
     //tempFileDir : './uploads'
 }));
 
-// const tipoDocumento= await TipoDocumento.create({
-//     Descripcion: 'CEDULA'
+// const tipoLibro= await TipoLibro.create({   
+//      Nombre: 'BIBLIA' ,
+//      Descripcion: 'PALABRA DE DIOS'
 
 // });
+//console.log('creado',tipoLibro)
 
 // const procedimiento= await Procedure.create({
 //     descripcion: 'INSTALACION',
@@ -108,6 +113,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/procedure", procedureRouter);
 app.use("/api/v1/marca", marcaRouter);
 app.use("/api/v1/tipoDocumento", tipoDocumentoRouter);
+app.use("/api/v1/tipoLibro", tipoLibroRouter);
 app.use("/api/v1/tipoVehiculo", tipoVehiculoRouter);
 //app.use("/api/v1/links", linkRouter);
 //app.use(express.static("public"));

@@ -53,7 +53,7 @@ export const update =async(req,res) =>{
    
     try {
 
-        const {id} = req.params;
+        //const {id} = req.params;
     
      
          let {Id, Nombre,Descripcion } = req.body;

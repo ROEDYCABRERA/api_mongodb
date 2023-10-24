@@ -27,12 +27,12 @@ app.use(fileUpload({
     //tempFileDir : './uploads'
 }));
 
-// const tipoLibro= await TipoLibro.create({   
-//      Nombre: 'BIBLIA' ,
-//      Descripcion: 'PALABRA DE DIOS'
+const tipoLibro= await TipoLibro.create({   
+     Nombre: 'BIBLIA' ,
+     Descripcion: 'PALABRA DE DIOS'
 
-// });
-//console.log('creado',tipoLibro)
+ });
+console.log('creado',tipoLibro)
 
 // const procedimiento= await Procedure.create({
 //     descripcion: 'INSTALACION',

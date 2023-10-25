@@ -3,9 +3,9 @@ const { Schema, model } = mongoose;
 
 const sexoSchema = new Schema({
    
-    Nombre: {
+    Sexo: {
         type: String,
-        required: [true, "El nombre es requerido"],
+        required: [true, "El sexo es requerido"],
     }
 });
 

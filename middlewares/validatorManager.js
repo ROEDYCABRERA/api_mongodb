@@ -120,6 +120,13 @@ export const paramTipoLibroValidator = [
         .escape(),
     validationResultExpress,
 ];
+export const paramAutorValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];
 export const paramSexoValidator = [
     param("id", "Formato no válido (expressValidator)")
         .trim()
@@ -140,6 +147,12 @@ export const bodyTipoLibroValidator = [
          .notEmpty()
          .isLength({ max: 50 }),
          body("Descripcion", "Formato de descripcion incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+    validationResultExpress,
+];
+export const bodyAutorValidator = [
+    body("Nombre", "Formato de nombre incorrecto")
          .notEmpty()
          .isLength({ max: 50 }),
     validationResultExpress,

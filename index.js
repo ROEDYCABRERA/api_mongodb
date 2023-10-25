@@ -10,6 +10,7 @@ import tipoVehiculoRouter from "./routes/tipoVehiculo.route.js";
 import tipoLibroRouter from "./routes/tipoLibro.route.js";
 import sexoRouter from "./routes/sexo.route.js";
 import paisRouter from "./routes/pais.route.js";
+import autorRouter from "./routes/autor.route.js";
 import cookieParser from "cookie-parser";
 import { User } from "./models/User.js";
 import { TipoDocumento } from "./models/TipoDocumento.js";
@@ -23,6 +24,7 @@ import { Detalles  } from "./models/Detalles.js";
 import { TipoLibro } from "./models/TipoLibro.js";
 import { Sexo } from "./models/Sexo.js";
 import { Pais } from "./models/Pais.js";
+import { Autor } from "./models/Autor.js";
 const app = express();
 
 app.use(fileUpload({
@@ -30,16 +32,16 @@ app.use(fileUpload({
     //tempFileDir : './uploads'
 }));
 
-const pais= await Pais.create({   
-     Nombre: 'Peru' 
- 
- });
- const paiss= await Pais.create({   
-    Nombre: 'Republica Dominicana' 
+// const pais= await Pais.create({
+//     NombrePais: 'PERU'
+//  });
+//   const autor= await Autor.create({
+//      Nombre: 'ROEDY',     
+//       pais:pais._id,
+//  });
+//   console.log('creado',pais)
+//   console.log('creado',autor)
 
-});
-console.log('creado',pais)
-console.log('creado',paiss)
 
 // const procedimiento= await Procedure.create({
 //     descripcion: 'INSTALACION',
@@ -110,6 +112,7 @@ console.log('creado',paiss)
 //         credentials: true,
 //     })
 // );
+
 app.use(cookieParser());
 app.use(express.json());
 app.get('/', function (req, res) {
@@ -124,6 +127,7 @@ app.use("/api/v1/tipoLibro", tipoLibroRouter);
 app.use("/api/v1/tipoVehiculo", tipoVehiculoRouter);
 app.use("/api/v1/sexo", sexoRouter);
 app.use("/api/v1/pais", paisRouter);
+app.use("/api/v1/autor", autorRouter);
 //app.use("/api/v1/links", linkRouter);
 //app.use(express.static("public"));
 const PORT = process.env.PORT || 5000;

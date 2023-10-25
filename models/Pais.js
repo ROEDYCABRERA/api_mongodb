@@ -3,9 +3,9 @@ const { Schema, model } = mongoose;
 
 const paisSchema = new Schema({
    
-    Nombre: {
+    NombrePais: {
         type: String,
-        required: [true, "El nombre es requerido"],
+        required: [true, "El nombre pais es requerido"],
     }
 });
 

@@ -4,16 +4,36 @@ import { Autor } from "../models/Autor.js";
 export const getDatos = async (req, res) => {
     try {
         
-       
-         const autor = await Autor.find({})
-        .populate({ 
-             path: 'pais'
-            })
-        
-        .exec();
-        
+        const autor = await Autor.aggregate(
+            [
+                
 
-        return res.json(autor);
+                {$lookup:{from:'pais',localField:'Pais',foreignField:'_id', as:'Pais'}},
+                {$unwind: '$Pais'},
+                {
+                    $addFields: {
+                        Pais: '$Pais.Pais'
+                    }
+                 },
+              
+                {$project:
+                { 
+                    
+                    Nombre:1,
+                    Pais: 1
+                   
+
+                }
+                }
+                
+              
+            ]
+
+        )
+    
+        console.log(autor);
+        return res.json({autor});
+       
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: "Error de servidor" });

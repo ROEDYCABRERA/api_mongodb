@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const AutorSchema = new Schema({
+    
         Nombre: {
             type: String,
             required: [true, "El nombre es requerido"],
             trim: true,
         },
-        pais:{
-            type: Schema.Types.ObjectId,
-            ref: 'Pais'
+        Pais:{
+            type: mongoose.Schema.Types.ObjectId,ref:'Pais'
         }
        
     }

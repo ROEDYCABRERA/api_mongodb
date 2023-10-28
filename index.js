@@ -33,14 +33,15 @@ app.use(fileUpload({
 }));
 
 // const pais= await Pais.create({
-//     NombrePais: 'PERU'
-//  });
-//   const autor= await Autor.create({
-//      Nombre: 'ROEDY',     
-//       pais:pais._id,
+//        Pais: 'RD'
+
+//    });
+//  const autor= await Autor.create({
+//     Nombre: 'JOSUE',     
+//      Pais:pais._id,
 //  });
 //   console.log('creado',pais)
-//   console.log('creado',autor)
+    //console.log('creado',autor)
 
 
 // const procedimiento= await Procedure.create({

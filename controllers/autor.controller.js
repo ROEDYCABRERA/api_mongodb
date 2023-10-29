@@ -32,7 +32,7 @@ export const getDatos = async (req, res) => {
         )
     
         console.log(autor);
-        return res.json({autor});
+        return res.json(autor);
        
     } catch (error) {
         console.log(error);

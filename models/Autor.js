@@ -8,6 +8,19 @@ const AutorSchema = new Schema({
             required: [true, "El nombre es requerido"],
             trim: true,
         },
+        ApPaterno: {
+            type: String,
+            required: [true, "El apellido paterno es requerido"],
+            trim: true,
+        },
+        ApMaterno: {
+            type: String,
+            required: [true, "El apellido materno es requerido"],
+            trim: true,
+        },
+        Sexo:{
+            type: mongoose.Schema.Types.ObjectId,ref:'Sexo'
+        },
         Pais:{
             type: mongoose.Schema.Types.ObjectId,ref:'Pais'
         }

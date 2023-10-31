@@ -1,9 +1,9 @@
 import { Autor } from "../models/Autor.js";
-
+import { MongoClient, ObjectId } from 'mongodb';
 
 export const getDatos = async (req, res) => {
     try {
-        
+     
         const autor = await Autor.aggregate(
             [
                 
@@ -20,6 +20,7 @@ export const getDatos = async (req, res) => {
                 { 
                     
                     Nombre:1,
+                  
                     Pais: 1
                    
 
@@ -39,6 +40,60 @@ export const getDatos = async (req, res) => {
         return res.status(500).json({ error: "Error de servidor" });
     }
 };
+export const getID = async (req, res) => {
+    try {
+        const {id} = req.params;
+       
+      
+        const autor = await Autor.aggregate(
+            [
+                
+                {$match: { _id: ObjectId(req.params.id) }},
+                {$lookup:{from:'pais',localField:'Pais',foreignField:'_id', as:'Pais'}},
+                {$lookup:{from:'sexos',localField:'Sexo',foreignField:'_id', as:'Sexo'}},
+                {$unwind: '$Sexo'},
+                {
+                    $addFields: {
+                        Sexo: '$Sexo.Sexo'
+                    }
+                 },
+                {$unwind: '$Pais'},
+                {
+                    $addFields: {
+                        Pais: '$Pais.Pais'
+                    }
+                 },
+              
+                {$project:
+                { 
+                    
+                    Nombre:1,
+                    ApPaterno:1,
+                    ApMaterno:1,
+                    Sexo:1,
+                    Pais: 1
+                   
+
+                }
+                }
+                
+              
+            ]
+
+        )
+        if (autor=="") return res.status(404).json({ error: "No existe el autor" })
+        return res.json(autor);
+
+   
+    } catch (error) {
+        console.log(error);
+        if (error.kind === "ObjectId") {
+            return res.status(403).json({ error: "Formato id incorrecto" });
+        }
+        return res.status(500).json({ error: "error de servidor" });
+    }
+};
+
 export const register =async(req,res) =>{
    
     try {

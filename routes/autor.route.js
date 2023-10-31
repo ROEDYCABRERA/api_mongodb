@@ -2,6 +2,7 @@ import {Router} from "express";
 import {
     register,
     getDatos,
+    getID,
     update,
     remove
 
@@ -12,8 +13,9 @@ const router = Router();
 
 router.post("/register", bodyAutorValidator,register);
 router.put("/update", bodyAutorValidator,update);
-//router.put("/:id",paramTipoLibroValidator,bodyTipoLibroValidator,update);
+
 router.delete("/:id" ,paramAutorValidator,remove);
 router.get("/listar",getDatos);
+router.get("/:id",paramAutorValidator,getID);
 
 export default router;

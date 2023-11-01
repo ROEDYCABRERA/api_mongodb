@@ -32,23 +32,23 @@ app.use(fileUpload({
     //tempFileDir : './uploads'
 }));
 
-// const sexo= await Sexo.create({
-//     Sexo: 'FEMENINO'
+//  const sexo= await Sexo.create({
+//           Sexo: 'FEMENINO'
 
 // });
 // const pais= await Pais.create({
 //         Pais: 'VENEZUELA'
 
-//   });
+//  });
 //  const autor= await Autor.create({
-//       Nombre: 'PEDRO', 
+//      Nombre: 'PEDRO', 
 //       ApPaterno: 'CASTILLO',
 //       ApMaterno: 'FRANCO', 
 //       Sexo:sexo._id,      
 //       Pais:pais._id
-//  });
-//    console.log('creado',pais)
-//    console.log('creado',autor)
+//   });
+//  console.log('creado',pais)
+// console.log('creado',autor)
 
 
 // const procedimiento= await Procedure.create({

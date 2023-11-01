@@ -9,6 +9,13 @@ export const getDatos = async (req, res) => {
                 
 
                 {$lookup:{from:'pais',localField:'Pais',foreignField:'_id', as:'Pais'}},
+                {$lookup:{from:'sexos',localField:'Sexo',foreignField:'_id', as:'Sexo'}},
+                {$unwind: '$Sexo'},
+                {
+                    $addFields: {
+                        Sexo: '$Sexo.Sexo'
+                    }
+                 },
                 {$unwind: '$Pais'},
                 {
                     $addFields: {
@@ -20,7 +27,9 @@ export const getDatos = async (req, res) => {
                 { 
                     
                     Nombre:1,
-                  
+                    ApPaterno:1,
+                    ApMaterno:1,
+                    Sexo:1,
                     Pais: 1
                    
 
@@ -97,15 +106,15 @@ export const getID = async (req, res) => {
 export const register =async(req,res) =>{
    
     try {
-        
-        const {Nombre} = req.body;
+        const {Nombre,ApPaterno,ApMaterno,Sexo,Pais} = req.body;
+      
         let autor = await Autor.findOne({Nombre});
         if (autor) throw new Error("autor ya esta registrado 😒");
 
-        autor = new Autor({Nombre});
+        autor = new Autor({Nombre,ApPaterno,ApMaterno,Sexo,Pais});
         await autor.save();
 
-          return res.json({ ok: true });
+        return res.json({ ok: true });
       
     } catch (error) {
         console.log(error);
@@ -137,17 +146,21 @@ export const update =async(req,res) =>{
         //const {id} = req.params;
     
      
-         let {Id,Nombre } = req.body;
-     
+       
+        const {Id,Nombre,ApPaterno,ApMaterno,Sexo,Pais} = req.body;
         const autor = await Autor.findById(Id);
 
         if (!autor) return res.status(404).json({ error: "No existe el autor" });
 
 
         autor.Nombre = Nombre;
+        autor.ApPaterno = ApPaterno;
+        autor.ApMaterno = ApMaterno;
+        autor.Sexo = Sexo;
+        autor.Pais = Pais;
         await autor.save();
 
-          return res.json({ ok: true });
+        return res.json({ ok: true });
        
     } catch (error) {
         console.log(error);

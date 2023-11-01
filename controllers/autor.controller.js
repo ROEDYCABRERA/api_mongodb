@@ -54,13 +54,13 @@ export const getID = async (req, res) => {
                 {$unwind: '$Sexo'},
                 {
                     $addFields: {
-                        Sexo: '$Sexo.Sexo'
+                        Sexo: '$Sexo._id'
                     }
                  },
                 {$unwind: '$Pais'},
                 {
                     $addFields: {
-                        Pais: '$Pais.Pais'
+                        Pais: '$Pais._id'
                     }
                  },
               

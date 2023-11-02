@@ -11,6 +11,7 @@ import tipoLibroRouter from "./routes/tipoLibro.route.js";
 import sexoRouter from "./routes/sexo.route.js";
 import paisRouter from "./routes/pais.route.js";
 import autorRouter from "./routes/autor.route.js";
+import personaRouter from "./routes/persona.route.js";
 import cookieParser from "cookie-parser";
 import { User } from "./models/User.js";
 import { TipoDocumento } from "./models/TipoDocumento.js";
@@ -25,6 +26,7 @@ import { TipoLibro } from "./models/TipoLibro.js";
 import { Sexo } from "./models/Sexo.js";
 import { Pais } from "./models/Pais.js";
 import { Autor } from "./models/Autor.js";
+import { Persona } from "./models/Persona.js";
 const app = express();
 
 app.use(fileUpload({
@@ -40,15 +42,17 @@ app.use(fileUpload({
 //         Pais: 'VENEZUELA'
 
 //  });
-//  const autor= await Autor.create({
-//      Nombre: 'PEDRO', 
-//       ApPaterno: 'CASTILLO',
-//       ApMaterno: 'FRANCO', 
-//       Sexo:sexo._id,      
-//       Pais:pais._id
-//   });
-//  console.log('creado',pais)
-// console.log('creado',autor)
+//  const persona= await Persona.create({
+//       Nombre: 'MARIA', 
+//       ApPaterno: 'MARTINEZ',
+//       ApMaterno: 'ESTEVEN', 
+//   FechaNacimiento:'02/11/2023',
+//       Correo:'MARIAMARTINEZ@gmail.com'
+
+      
+//     });
+// // //  console.log('creado',pais)
+//  console.log('creado',persona)
 
 
 // const procedimiento= await Procedure.create({
@@ -136,6 +140,7 @@ app.use("/api/v1/tipoVehiculo", tipoVehiculoRouter);
 app.use("/api/v1/sexo", sexoRouter);
 app.use("/api/v1/pais", paisRouter);
 app.use("/api/v1/autor", autorRouter);
+app.use("/api/v1/persona", personaRouter);
 //app.use("/api/v1/links", linkRouter);
 //app.use(express.static("public"));
 const PORT = process.env.PORT || 5000;

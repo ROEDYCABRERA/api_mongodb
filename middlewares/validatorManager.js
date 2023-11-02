@@ -90,8 +90,31 @@ export const bodyMarcaValidator = [
          .isLength({ max: 50 }),
     validationResultExpress,
 ];
+export const bodyPersonaValidator = [
+         body("Nombre", "Formato de Nombre incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+         body("ApPaterno", "Formato de Nombre incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+         body("ApMaterno", "Formato de Nombre incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+         body("Correo", "Formato de email incorrecto")
+         .trim()
+         .isEmail()
+         .normalizeEmail(),
+    validationResultExpress,
+];
 
 export const paramMarcaValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];
+export const paramPersonaValidator = [
     param("id", "Formato no válido (expressValidator)")
         .trim()
         .notEmpty()
@@ -152,7 +175,13 @@ export const bodyTipoLibroValidator = [
     validationResultExpress,
 ];
 export const bodyAutorValidator = [
-    body("Nombre", "Formato de nombre incorrecto")
+        body("Nombre", "Formato de nombre incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+         body("ApPaterno", "Formato de nombre incorrecto")
+         .notEmpty()
+         .isLength({ max: 50 }),
+         body("ApMaterno", "Formato de nombre incorrecto")
          .notEmpty()
          .isLength({ max: 50 }),
     validationResultExpress,

@@ -42,18 +42,18 @@ app.use(fileUpload({
 //         Pais: 'VENEZUELA'
 
 //  });
-// const persona= await Persona.create({
-//        Nombre: 'MARCO', 
-//       ApPaterno: 'ROSARIO',    
-//        ApMaterno: 'LOMBERT', 
-//        telefono: '974590099', 
-//       FechaNacimiento:'02/11/2023',
-//       Correo:'MARCO@gmail.com'
+const persona= await Persona.create({
+       Nombre: 'JUANA', 
+      ApPaterno: 'GONZALEZ',    
+       ApMaterno: 'RAMIREZ', 
+       Telefono: '974590099', 
+      FechaNacimiento:'02/11/2023',
+      Correo:'JUAN@gmail.com'
 
       
-//      });
+     });
 // /// //  console.log('creado',pais)
-//  console.log('creado',persona)
+ console.log('creado',persona)
 
 
 // const procedimiento= await Procedure.create({

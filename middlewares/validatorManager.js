@@ -104,6 +104,7 @@ export const bodyPersonaValidator = [
          .trim()
          .isEmail()
          .normalizeEmail(),
+         body("Telefono", "Mínimo 9 carácteres").trim().isLength({ min: 9 }),
     validationResultExpress,
 ];
 

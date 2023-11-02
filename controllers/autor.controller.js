@@ -147,8 +147,8 @@ export const update =async(req,res) =>{
     
      
        
-        const {Id,Nombre,ApPaterno,ApMaterno,Sexo,Pais} = req.body;
-        const autor = await Autor.findById(Id);
+        const {id,Nombre,ApPaterno,ApMaterno,Sexo,Pais} = req.body;
+        const autor = await Autor.findById(id);
 
         if (!autor) return res.status(404).json({ error: "No existe el autor" });
 

@@ -30,6 +30,10 @@ const PersonaSchema = new Schema({
             index: { unique: true },
             required: [true, "El correo es requerido"],
         },
+        telefono : {
+            type: String,
+            required: [true, "El Telefono es requerido"],
+        },
        
     }
     

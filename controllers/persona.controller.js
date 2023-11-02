@@ -36,7 +36,8 @@ export const getID = async (req, res) => {
                     ApPaterno:1,
                     ApMaterno:1,
                     FechaNacimiento:1,
-                    Correo:1
+                    Correo:1,
+                    Telefono:1
                   
 
                 }
@@ -62,12 +63,12 @@ export const getID = async (req, res) => {
 export const register =async(req,res) =>{
    
     try {
-        const {Nombre,ApPaterno,ApMaterno,FechaNacimiento,Correo} = req.body;
+        const {Nombre,ApPaterno,ApMaterno,FechaNacimiento,Correo,telefono} = req.body;
       
         let persona = await Persona.findOne({Nombre});
         if (persona) throw new Error("La Nombre de la Persona ya esta registrado 😒");
 
-        persona = new Persona({Nombre,ApPaterno,ApMaterno,FechaNacimiento,Correo});
+        persona = new Persona({Nombre,ApPaterno,ApMaterno,FechaNacimiento,Correo,telefono});
         await persona.save();
 
         return res.json({ ok: true });
@@ -103,7 +104,7 @@ export const update =async(req,res) =>{
     
      
        
-        let {id,Nombre,ApPaterno,ApMaterno,FechaNacimiento,Correo} = req.body;
+        let {id,Nombre,ApPaterno,ApMaterno,FechaNacimiento,Correo,telefono} = req.body;
         const persona = await Persona.findById(id);
 
         if (!persona) return res.status(404).json({ error: "No existe la persona" });
@@ -114,7 +115,7 @@ export const update =async(req,res) =>{
         persona.ApMaterno = ApMaterno;
         persona.FechaNacimiento = FechaNacimiento;
         persona.Correo = Correo;
-    
+        persona.telefono = telefono;
         await persona.save();
 
         return res.json({ ok: true });

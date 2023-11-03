@@ -23,37 +23,44 @@ import { VehiculoFoto  } from "./models/VehiculoFoto.js";
 import { Historia  } from "./models/History.js";
 import { Procedure  } from "./models/Procedure.js";
 import { Detalles  } from "./models/Detalles.js";
-import { TipoLibro } from "./models/TipoLibro.js";
 import { Sexo } from "./models/Sexo.js";
 import { Pais } from "./models/Pais.js";
 import { Autor } from "./models/Autor.js";
 import { Persona } from "./models/Persona.js";
 import { Libro } from "./models/Libro.js";
+import { TipoLibro } from "./models/TipoLibro.js";
 const app = express();
 
 app.use(fileUpload({
     //useTempFiles : true,
     //tempFileDir : './uploads'
 }));
+// const tipoLibro= await TipoLibro.create({
+//      Descripcion: 'SOLO EN CRISTO HAY SALVACION',
+//      Nombre:'CRISTO SALVA'
+    
 
-// const autor= await Autor.create({
-//          Nombre: 'LUZ',
-//          ApPaterno: "CABRARA",
-//          ApMaterno: "CORDOVA",
-//         Sexo: "65428963357cddff6f0b2163",
-//         Pais: "65428966357cddff6f0b2166"
+// })
+// const autor= await Autor.create({       
+//       Nombre: 'ROSA MARIA',
+//       ApPaterno: "TORIBIO",
+//       ApMaterno: "PEREZ",
+//       Sexo: "65428963357cddff6f0b2163",
+//       Pais: "65428966357cddff6f0b2166"
 // });
-// const libro= await Libro.create({          
-//     Titulo: 'CRISTO SALVA',
-//     Resumen:'Resumen',
+//  const libro= await Libro.create({          
+//     Titulo: 'JESUS EL REY DE REYES',
+//     Resumen:'CRISTO VINO A SALVAR AL MUNDO DE LA CONDENACION ETERNA',
 //     NumeroPagina:100,
 //     Stock:500,
 //     FotoCaratula:'https://cdn.bibliatodo.com/assets/img/es/situacion/cat/salvacion.jpg',
-//     Autor:autor.id
+//     Autor:autor.id,
+//     TipoLibro:tipoLibro.id
 
 // });
+// console.log('creado',tipoLibro)
 // console.log('creado',autor)
-// console.log('creado',libro)
+//  console.log('creado',libro)
 
 // const persona= await Persona.create({
 //        Nombre: 'JUANA', 

@@ -28,6 +28,9 @@ const LibroSchema = new Schema({
         },
         Autor:{
             type: mongoose.Schema.Types.ObjectId,ref:'Autor'
+        },
+        TipoLibro:{
+            type: mongoose.Schema.Types.ObjectId,ref:'TipoLibro'
         }
         
        

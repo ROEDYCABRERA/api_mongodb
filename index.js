@@ -12,6 +12,7 @@ import sexoRouter from "./routes/sexo.route.js";
 import paisRouter from "./routes/pais.route.js";
 import autorRouter from "./routes/autor.route.js";
 import personaRouter from "./routes/persona.route.js";
+import libroRouter from "./routes/libro.route.js";
 import cookieParser from "cookie-parser";
 import { User } from "./models/User.js";
 import { TipoDocumento } from "./models/TipoDocumento.js";
@@ -27,6 +28,7 @@ import { Sexo } from "./models/Sexo.js";
 import { Pais } from "./models/Pais.js";
 import { Autor } from "./models/Autor.js";
 import { Persona } from "./models/Persona.js";
+import { Libro } from "./models/Libro.js";
 const app = express();
 
 app.use(fileUpload({
@@ -34,26 +36,33 @@ app.use(fileUpload({
     //tempFileDir : './uploads'
 }));
 
-//  const sexo= await Sexo.create({
-//           Sexo: 'FEMENINO'
+//  const autor= await Autor.create({
+//         Nombre: 'MARIA',
+//         ApPaterno: "GONZALEZ",
+//         ApMaterno: "ESTEVEN",
+//         Sexo: "65428963357cddff6f0b2163",
+//         Pais: "65428966357cddff6f0b2166"
+// });
+//  const libro= await Libro.create({
+//          Titulo: 'EL UNICO CAMINO',
+//          FotoCaratula:'https://cdn.bibliatodo.com/assets/img/es/situacion/cat/salvacion.jpg',
+//          Autor:autor.id
 
 // });
-// const pais= await Pais.create({
-//         Pais: 'VENEZUELA'
+// console.log('creado',autor)
+// console.log('creado',libro)
 
-//  });
-const persona= await Persona.create({
-       Nombre: 'JUANA', 
-      ApPaterno: 'GONZALEZ',    
-       ApMaterno: 'RAMIREZ', 
-       Telefono: '974590099', 
-      FechaNacimiento:'02/11/2023',
-      Correo:'JUAN@gmail.com'
+// const persona= await Persona.create({
+//        Nombre: 'JUANA', 
+//       ApPaterno: 'GONZALEZ',    
+//        ApMaterno: 'RAMIREZ', 
+//        Telefono: '974590099', 
+//       FechaNacimiento:'02/11/2023',
+//       Correo:'JUAN@gmail.com'
 
-      
-     });
-// /// //  console.log('creado',pais)
- console.log('creado',persona)
+//      });
+// // /// //  console.log('creado',pais)
+//  console.log('creado',persona)
 
 
 // const procedimiento= await Procedure.create({
@@ -142,6 +151,7 @@ app.use("/api/v1/sexo", sexoRouter);
 app.use("/api/v1/pais", paisRouter);
 app.use("/api/v1/autor", autorRouter);
 app.use("/api/v1/persona", personaRouter);
+app.use("/api/v1/libro", libroRouter);
 //app.use("/api/v1/links", linkRouter);
 //app.use(express.static("public"));
 const PORT = process.env.PORT || 5000;

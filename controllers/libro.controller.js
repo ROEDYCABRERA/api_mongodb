@@ -1,38 +1,28 @@
-import { Autor } from "../models/Autor.js";
+import { Libro } from "../models/Libro.js";
 import { MongoClient, ObjectId } from 'mongodb';
 
 export const getDatos = async (req, res) => {
     try {
      
-        const autor = await Autor.aggregate(
+        const libro = await Libro.aggregate(
             [
                 
 
-                {$lookup:{from:'pais',localField:'Pais',foreignField:'_id', as:'Pais'}},
-                {$lookup:{from:'sexos',localField:'Sexo',foreignField:'_id', as:'Sexo'}},
-                {$unwind: '$Sexo'},
-                {
-                    $addFields: {
-                        Sexo: '$Sexo.Sexo'
-                    }
-                 },
-                {$unwind: '$Pais'},
-                {
-                    $addFields: {
-                        Pais: '$Pais.Pais'
-                    }
-                 },
+                {$lookup:{from:'autors',localField:'Autor',foreignField:'_id', as:'Autor'}},
+                {$unwind: '$Autor'},
+                 {
+                     $addFields: {
+                         Autor: '$Autor.Nombre'
+                     }
+                  },
               
                 {$project:
                 { 
                     
-                    Nombre:1,
-                    ApPaterno:1,
-                    ApMaterno:1,
-                    Sexo:1,
-                    Pais: 1
-                   
-
+                    Titulo:1,
+                    FotoCaratula:1,
+                    Autor:1
+                
                 }
                 }
                 
@@ -41,8 +31,8 @@ export const getDatos = async (req, res) => {
 
         )
     
-        //console.log(autor);
-        return res.json(autor);
+       // console.log(libro);
+        return res.json(libro);
        
     } catch (error) {
         console.log(error);

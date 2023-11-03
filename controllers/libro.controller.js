@@ -144,11 +144,10 @@ export const update =async(req,res) =>{
 
         //const {id} = req.params;
     
-        let {Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor,TipoLibro} = req.body;
+        let {id,Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor,TipoLibro} = req.body;
         const libro = await Libro.findById(id);
 
         if (!libro) return res.status(404).json({ error: "No existe el libro" });
-
 
         libro.Titulo = Titulo;
         libro.Resumen = Resumen;

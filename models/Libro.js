@@ -8,6 +8,20 @@ const LibroSchema = new Schema({
             required: [true, "El Titulo es requerido"],
             trim: true,
         },
+        
+        Resumen: {
+            type: String,
+            required: [true, "El Resumen es requerido"],
+            trim: true,
+        },
+        NumeroPagina: {
+            type: Number,
+            required: [true, "El Numero Pagina es requerido"],
+        },
+        Stock: {
+            type: Number,
+            required: [true, "El Stock es requerido"],
+        },
         FotoCaratula: {
             type: String
             

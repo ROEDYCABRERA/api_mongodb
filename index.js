@@ -36,17 +36,20 @@ app.use(fileUpload({
     //tempFileDir : './uploads'
 }));
 
-//  const autor= await Autor.create({
-//         Nombre: 'MARIA',
-//         ApPaterno: "GONZALEZ",
-//         ApMaterno: "ESTEVEN",
+// const autor= await Autor.create({
+//          Nombre: 'LUZ',
+//          ApPaterno: "CABRARA",
+//          ApMaterno: "CORDOVA",
 //         Sexo: "65428963357cddff6f0b2163",
 //         Pais: "65428966357cddff6f0b2166"
 // });
-//  const libro= await Libro.create({
-//          Titulo: 'EL UNICO CAMINO',
-//          FotoCaratula:'https://cdn.bibliatodo.com/assets/img/es/situacion/cat/salvacion.jpg',
-//          Autor:autor.id
+// const libro= await Libro.create({          
+//     Titulo: 'CRISTO SALVA',
+//     Resumen:'Resumen',
+//     NumeroPagina:100,
+//     Stock:500,
+//     FotoCaratula:'https://cdn.bibliatodo.com/assets/img/es/situacion/cat/salvacion.jpg',
+//     Autor:autor.id
 
 // });
 // console.log('creado',autor)

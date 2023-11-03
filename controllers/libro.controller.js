@@ -44,33 +44,30 @@ export const getID = async (req, res) => {
         const {id} = req.params;
        
       
-        const autor = await Autor.aggregate(
+        const libro = await Libro.aggregate(
             [
                 
                 {$match: { _id: ObjectId(req.params.id) }},
-                {$lookup:{from:'pais',localField:'Pais',foreignField:'_id', as:'Pais'}},
-                {$lookup:{from:'sexos',localField:'Sexo',foreignField:'_id', as:'Sexo'}},
-                {$unwind: '$Sexo'},
-                {
-                    $addFields: {
-                        Sexo: '$Sexo._id'
-                    }
-                 },
-                {$unwind: '$Pais'},
-                {
-                    $addFields: {
-                        Pais: '$Pais._id'
-                    }
-                 },
+               
+                {$lookup:{from:'autors',localField:'Autor',foreignField:'_id', as:'Autor'}},
+                {$unwind: '$Autor'},
+                 {
+                     $addFields: {
+                         Autor: '$Autor._id'
+                     }
+                  },
               
                 {$project:
                 { 
                     
-                    Nombre:1,
-                    ApPaterno:1,
-                    ApMaterno:1,
-                    Sexo:1,
-                    Pais: 1
+                    Titulo:1,
+                    Resumen:1,
+                    NumeroPagina:1,
+                    Stock:1,
+                    FotoCaratula:1,
+                    Autor:1
+
+                    
                    
 
                 }
@@ -80,8 +77,8 @@ export const getID = async (req, res) => {
             ]
 
         )
-        if (autor=="") return res.status(404).json({ error: "No existe el autor" })
-        return res.json(autor);
+        if (libro=="") return res.status(404).json({ error: "No existe el libro" })
+        return res.json(libro);
 
    
     } catch (error) {
@@ -96,13 +93,13 @@ export const getID = async (req, res) => {
 export const register =async(req,res) =>{
    
     try {
-        const {Nombre,ApPaterno,ApMaterno,Sexo,Pais} = req.body;
+        const {Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor} = req.body;
       
-        let autor = await Autor.findOne({Nombre});
-        if (autor) throw new Error("autor ya esta registrado 😒");
+        let libro = await Libro.findOne({Titulo});
+        if (libro) throw new Error("libro ya esta registrado 😒");
 
-        autor = new Autor({Nombre,ApPaterno,ApMaterno,Sexo,Pais});
-        await autor.save();
+        libro = new Libro({Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor});
+        await libro.save();
 
         return res.json({ ok: true });
       
@@ -114,14 +111,14 @@ export const register =async(req,res) =>{
 export const remove = async (req, res) => {
     try {
         const {id} = req.params;
-        const autor = await Autor.findById(id);
+        const libro = await Libro.findById(id);
       
-        if (!autor) return res.status(404).json({ error: "no existe el autor" });
+        if (!libro) return res.status(404).json({ error: "no existe el libro" });
       
        
-        await autor.remove();
+        await libro.remove();
        
-           return res.json({ ok: true });
+        return res.json({ ok: true });
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId")
@@ -135,20 +132,19 @@ export const update =async(req,res) =>{
 
         //const {id} = req.params;
     
-     
-       
-        let {id,Nombre,ApPaterno,ApMaterno,Sexo,Pais} = req.body;
-        const autor = await Autor.findById(id);
+        let {Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor} = req.body;
+        const libro = await Libro.findById(id);
 
-        if (!autor) return res.status(404).json({ error: "No existe el autor" });
+        if (!libro) return res.status(404).json({ error: "No existe el libro" });
 
 
-        autor.Nombre = Nombre;
-        autor.ApPaterno = ApPaterno;
-        autor.ApMaterno = ApMaterno;
-        autor.Sexo = Sexo;
-        autor.Pais = Pais;
-        await autor.save();
+        libro.Titulo = Titulo;
+        libro.Resumen = Resumen;
+        libro.NumeroPagina = NumeroPagina;
+        libro.Stock = Stock;
+        libro.FotoCaratula = FotoCaratula;
+        libro.Autor = Autor;
+        await libro.save();
 
         return res.json({ ok: true });
        

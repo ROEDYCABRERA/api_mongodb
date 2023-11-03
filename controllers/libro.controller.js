@@ -46,46 +46,49 @@ export const getID = async (req, res) => {
         const {id} = req.params;
        
       
-        const libro = await Libro.aggregate(
-            [
-                
-                {$match: { _id: ObjectId(req.params.id) }},
-               
-                {$lookup:{from:'autors',localField:'Autor',foreignField:'_id', as:'Autor'}},
-                {$unwind: '$Autor'},
-                 {
-                     $addFields: {
-                         Autor: '$Autor._id'
-                     }
-                  },
-                  {$lookup:{from:'tipolibros',localField:'TipoLibro',foreignField:'_id', as:'Tipolibro'}},
-                  {$unwind: '$Tipolibro'},
-                   {
-                       $addFields: {
-                        Tipolibro: '$Tipolibro._id'
-                       }
-                    },
-                {$project:
-                { 
-                    
-                    Titulo:1,
-                    Resumen:1,
-                    NumeroPagina:1,
-                    Stock:1,
-                    FotoCaratula:1,
-                    Autor:1,
-                    Tipolibro:1
+        const libro = await Libro.aggregate([
+          { $match: { _id: ObjectId(req.params.id) } },
 
-                    
-                   
-
-                }
-                }
-                
-              
-            ]
-
-        )
+          {
+            $lookup: {
+              from: "autors",
+              localField: "Autor",
+              foreignField: "_id",
+              as: "Autor",
+            },
+          },
+          { $unwind: "$Autor" },
+          {
+            $addFields: {
+              Autor: "$Autor._id",
+            },
+          },
+          {
+            $lookup: {
+              from: "tipolibros",
+              localField: "TipoLibro",
+              foreignField: "_id",
+              as: "Tipolibro",
+            },
+          },
+          { $unwind: "$Tipolibro" },
+          {
+            $addFields: {
+              Tipolibro: "$Tipolibro._id",
+            },
+          },
+          {
+            $project: {
+              Titulo: 1,
+              Resumen: 1,
+              NumeroPagina: 1,
+              Stock: 1,
+              FotoCaratula: 1,
+              Autor: 1,
+              Tipolibro: 1,
+            },
+          },
+        ]);
         if (libro=="") return res.status(404).json({ error: "No existe el libro" })
         return res.json(libro);
 
@@ -102,12 +105,12 @@ export const getID = async (req, res) => {
 export const register =async(req,res) =>{
    
     try {
-        const {Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor,Tipolibro} = req.body;
+        const {Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor,TipoLibro} = req.body;
       
         let libro = await Libro.findOne({Titulo});
         if (libro) throw new Error("libro ya esta registrado 😒");
 
-        libro = new Libro({Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor,Tipolibro});
+        libro = new Libro({Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor,TipoLibro});
         await libro.save();
 
         return res.json({ ok: true });
@@ -141,7 +144,7 @@ export const update =async(req,res) =>{
 
         //const {id} = req.params;
     
-        let {Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor,Tipolibro} = req.body;
+        let {Titulo,Resumen,NumeroPagina,Stock,FotoCaratula,Autor,TipoLibro} = req.body;
         const libro = await Libro.findById(id);
 
         if (!libro) return res.status(404).json({ error: "No existe el libro" });
@@ -153,7 +156,7 @@ export const update =async(req,res) =>{
         libro.Stock = Stock;
         libro.FotoCaratula = FotoCaratula;
         libro.Autor = Autor;
-        libro.TipoLibro=Tipolibro;
+        libro.TipoLibro=TipoLibro;
         await libro.save();
 
         return res.json({ ok: true });

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
-const mensajeSchema = new Schema({
+const paginaSchema = new Schema({
    
     Mensaje: {
         type: String,
@@ -9,4 +9,4 @@ const mensajeSchema = new Schema({
     },
 });
 
-export const Mensaje = model("Mensaje", mensajeSchema);
+export const Pagina = model("Pagina", paginaSchema);

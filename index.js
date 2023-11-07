@@ -15,6 +15,7 @@ import personaRouter from "./routes/persona.route.js";
 import libroRouter from "./routes/libro.route.js";
 import usuarioRouter from "./routes/usuario.route.js";
 import tipousuarioRouter from "./routes/tipoUsuario.route.js";
+import paginaRouter from "./routes/pagina.route.js";
 import cookieParser from "cookie-parser";
 import { User } from "./models/User.js";
 import { TipoDocumento } from "./models/TipoDocumento.js";
@@ -33,15 +34,17 @@ import { Libro } from "./models/Libro.js";
 import { TipoLibro } from "./models/TipoLibro.js";
 import { TipoUsuario } from "./models/TipoUsuario.js";
 import { Usuario } from "./models/Usuario.js";
+import { Pagina } from "./models/Pagina.js";
 const app = express();
 
 app.use(fileUpload({
     //useTempFiles : true,
     //tempFileDir : './uploads'
 }));
-// const tipoLibro= await TipoLibro.create({
-//      Descripcion: 'SOLO EN CRISTO HAY SALVACION',
-//      Nombre:'CRISTO SALVA'
+//  const pagina= await Pagina.create({
+//     Mensaje: 'PAGINA'
+//  })
+//  console.log('creado',pagina)
     
 // const tipoUsuario= await TipoUsuario.create({
 //     NombreTipoUsuario: 'administrador',
@@ -187,6 +190,7 @@ app.use("/api/v1/persona", personaRouter);
 app.use("/api/v1/libro", libroRouter);
 app.use("/api/v1/usuario", usuarioRouter);
 app.use("/api/v1/tipousuario", tipousuarioRouter);
+app.use("/api/v1/pagina", paginaRouter);
 //app.use("/api/v1/links", linkRouter);
 //app.use(express.static("public"));
 const PORT = process.env.PORT || 5000;

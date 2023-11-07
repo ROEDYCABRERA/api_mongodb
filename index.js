@@ -42,10 +42,37 @@ app.use(fileUpload({
     //tempFileDir : './uploads'
 }));
 //  const pagina= await Pagina.create({
-//     Mensaje: 'PAGINA'
+//      Mensaje: 'Tipo Libro'
+//   })
+//   const pagina2= await Pagina.create({
+//     Mensaje: 'Autor'
 //  })
-//  console.log('creado',pagina)
-    
+//  const pagina3= await Pagina.create({
+//     Mensaje: 'Persona'
+//  })
+//  const pagina4= await Pagina.create({
+//     Mensaje: 'Libro'
+//  })
+//  const pagina5= await Pagina.create({
+//     Mensaje: 'Libro'
+//  })
+//  const pagina6= await Pagina.create({
+//     Mensaje: 'Consulta'
+//  })
+//  const pagina7= await Pagina.create({
+//     Mensaje: 'Tipo Usuario'
+//  })
+//  const pagina8= await Pagina.create({
+//     Mensaje: 'Usuario'
+//  })
+// console.log('creado',pagina)
+//  console.log('creado',pagina2)
+//  console.log('creado',pagina3)
+//  console.log('creado',pagina4)
+//  console.log('creado',pagina5)
+//  console.log('creado',pagina6)
+//  console.log('creado',pagina7)
+//  console.log('creado',pagina8)
 // const tipoUsuario= await TipoUsuario.create({
 //     NombreTipoUsuario: 'administrador',
 //     DescripcionTipoUsuario:'Gerente'

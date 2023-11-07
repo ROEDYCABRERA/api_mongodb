@@ -129,8 +129,25 @@ export const bodyTipoDocumentoValidator = [
          .isLength({ max: 50 }),
     validationResultExpress,
 ];
+export const bodyTipoUsuarioValidator = [
+  body("NombreTipoUsuario", "Formato de NombreTipoUsuario incorrecto")
+    .notEmpty()
+    .isLength({ max: 50 }),
+  body("DescripcionTipoUsuario", "Formato de DescripcionTipoUsuario incorrecto")
+    .notEmpty()
+    .isLength({ max: 50 }),
+  validationResultExpress,
+];
+
 
 export const paramTipoDocumentoValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];
+export const paramTipoUsuarioValidator = [
     param("id", "Formato no válido (expressValidator)")
         .trim()
         .notEmpty()

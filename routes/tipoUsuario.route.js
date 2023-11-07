@@ -6,13 +6,13 @@ import {
     remove
 
 } from "../controllers/tipoUsuario.controller.js";
-import { bodyTipoDocumentoValidator,paramTipoDocumentoValidator } from "../middlewares/validatorManager.js";
+import { bodyTipoUsuarioValidator,paramTipoUsuarioValidator } from "../middlewares/validatorManager.js";
 import { requireToken } from "../middlewares/requireToken.js";
 const router = Router();
 
-router.post("/register", bodyTipoDocumentoValidator,register);
-router.put("/:id",paramTipoDocumentoValidator,bodyTipoDocumentoValidator,update);
-router.delete("/:id" ,paramTipoDocumentoValidator,remove);
+router.post("/register", bodyTipoUsuarioValidator,register);
+router.put("/:id",paramTipoUsuarioValidator,bodyTipoUsuarioValidator,update);
+router.delete("/:id" ,paramTipoUsuarioValidator,remove);
 router.get("/listar",getDatos);
 
 export default router;

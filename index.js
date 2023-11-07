@@ -13,6 +13,7 @@ import paisRouter from "./routes/pais.route.js";
 import autorRouter from "./routes/autor.route.js";
 import personaRouter from "./routes/persona.route.js";
 import libroRouter from "./routes/libro.route.js";
+import usaurioRouter from "./routes/usuario.route.js";
 import cookieParser from "cookie-parser";
 import { User } from "./models/User.js";
 import { TipoDocumento } from "./models/TipoDocumento.js";
@@ -29,6 +30,8 @@ import { Autor } from "./models/Autor.js";
 import { Persona } from "./models/Persona.js";
 import { Libro } from "./models/Libro.js";
 import { TipoLibro } from "./models/TipoLibro.js";
+import { TipoUsuario } from "./models/TipoUsuario.js";
+import { Usuario } from "./models/Usuario.js";
 const app = express();
 
 app.use(fileUpload({
@@ -39,8 +42,27 @@ app.use(fileUpload({
 //      Descripcion: 'SOLO EN CRISTO HAY SALVACION',
 //      Nombre:'CRISTO SALVA'
     
+// const tipoUsuario= await TipoUsuario.create({
+//     NombreTipoUsuario: 'administrador',
+//     DescripcionTipoUsuario:'Gerente'
+//  })
+//  const persona= await Persona.create({
+//     Nombre: 'JOSUE ADIEL',
+//     ApPaterno:'CABRERA',
+//     ApMaterno:'CORDOVA',
+//     FechaNacimiento:'12/10/2022',
+//     Correo:'josue@gmail.com',
+//     Telefono:'947590099',
 
-// })
+//  })
+//  const usuario= await Usuario.create({
+//     NombreUsuario: 'admin',
+//     Persona:persona._id,
+//     TipoUsuario:tipoUsuario._id
+//  })
+//  console.log('creado',tipoUsuario)
+//  console.log('creado',persona)
+//  console.log('creado',usuario)
 // const autor= await Autor.create({       
 //       Nombre: 'ROSA MARIA',
 //       ApPaterno: "TORIBIO",
@@ -162,6 +184,7 @@ app.use("/api/v1/pais", paisRouter);
 app.use("/api/v1/autor", autorRouter);
 app.use("/api/v1/persona", personaRouter);
 app.use("/api/v1/libro", libroRouter);
+app.use("/api/v1/usuario", usaurioRouter);
 //app.use("/api/v1/links", linkRouter);
 //app.use(express.static("public"));
 const PORT = process.env.PORT || 5000;

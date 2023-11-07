@@ -21,9 +21,13 @@ export const getDatos = async (req, res) => {
                 {$project:
                 { 
                     
-                    Titulo:1,
-                    FotoCaratula:1,
-                    Autor:1
+                  Titulo: 1,
+                  Resumen: 1,
+                  NumeroPagina: 1,
+                  Stock: 1,
+                  FotoCaratula: 1,
+                  Autor: 1,
+                  Tipolibro: 1,
                 
                 }
                 }

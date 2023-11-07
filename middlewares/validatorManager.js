@@ -195,10 +195,14 @@ export const bodyAutorValidator = [
     validationResultExpress,
 ];
 export const bodyLibroValidator = [
-    body("Titulo", "Formato de Titulo incorrecto")
-     .notEmpty()
-     .isLength({ max: 50 }),
-validationResultExpress,
+  body("Titulo", "Formato de Titulo incorrecto")
+    .notEmpty()
+    .isLength({ max: 50 }),
+  validationResultExpress,
+  body("id", "Formato de id incorrecto")
+  .notEmpty()
+  .isLength({ max: 50 }),
+  validationResultExpress,
 ];
 export const bodySexoValidator = [
     body("Nombre", "Formato de nombre incorrecto")

@@ -4,38 +4,49 @@ import { MongoClient, ObjectId } from 'mongodb';
 export const getDatos = async (req, res) => {
     try {
      
-        const libro = await Libro.aggregate(
-            [
-                
+        const libro = await Libro.aggregate([
+          {
+            $lookup: {
+              from: "autors",
+              localField: "Autor",
+              foreignField: "_id",
+              as: "Autor",
+            },
+          },
 
-                {$lookup:{from:'autors',localField:'Autor',foreignField:'_id', as:'Autor'}},
-                {$unwind: '$Autor'},
-                 {
-                     $addFields: {
-                         Autor: '$Autor.Nombre'
-                     }
-                  },
-              
-                  
-                
-                {$project:
-                { 
-                    
-                  Titulo: 1,
-                  Resumen: 1,
-                  NumeroPagina: 1,
-                  Stock: 1,
-                  FotoCaratula: 1,
-                  Autor: 1,
-                  Tipolibro: 1,
-                
-                }
-                }
-                
-              
-            ]
+          {
+            $lookup: {
+              from: "tipolibros",
+              localField: "TipoLibro",
+              foreignField: "_id",
+              as: "Tipolibro",
+            },
+          },
+          { $unwind: "$Tipolibro" },
+          {
+            $addFields: {
+              Tipolibro: "$Tipolibro._id",
+            },
+          },
+          { $unwind: "$Autor" },
+          {
+            $addFields: {
+              Autor: "$Autor.Nombre",
+            },
+          },
 
-        )
+          {
+            $project: {
+              Titulo: 1,
+              Resumen: 1,
+              NumeroPagina: 1,
+              Stock: 1,
+              FotoCaratula: 1,
+              Autor: 1,
+              Tipolibro: 1,
+            },
+          },
+        ]);
     
        // console.log(libro);
         return res.json(libro);

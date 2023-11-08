@@ -12,8 +12,7 @@ const tipoUsuarioSchema = new Schema({
         required: [true, "La Descripcion Tipo Usuario es requerido"],
     },
     IDPAGINA: {
-        type: String,
-        required: true
+        type: String
     }
 });
 

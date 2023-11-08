@@ -56,7 +56,7 @@ export const getID = async (req, res) => {
         const paginaTipoUsuario = await PaginaTipoUsuario.aggregate(
             [
                 
-                {$match: { _id: ObjectId(req.params.id) }},
+                {$match: { TipoUsuario: ObjectId(req.params.id) }},
             
                 {$project:
                 { 

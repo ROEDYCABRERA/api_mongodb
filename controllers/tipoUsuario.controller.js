@@ -25,7 +25,7 @@ export const register =async(req,res) =>{
         await tipoUsuario.save();
 
        
-        return res.json({ tipoUsuario });
+        return res.json({ ok: true });
     } catch (error) {
         console.log(error);
         return res.status(403).json({ error: error.message });
@@ -40,7 +40,7 @@ export const remove = async (req, res) => {
       
        
         await tipoDocumento.remove();
-        return res.json({ tipoDocumento });
+        return res.json({ ok: true });
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId")
@@ -66,7 +66,7 @@ export const update =async(req,res) =>{
         await tipoDocumento.save();
 
        
-        return res.json({tipoDocumento}.tipoDocumento);
+        return res.json({ ok: true });
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId") {

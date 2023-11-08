@@ -16,12 +16,12 @@ export const getDatos = async (req, res) => {
 export const register =async(req,res) =>{
    
     try {
-        const {NombreTipoUsuario,DescripcionTipoUsuario,IDPAGINA,Habilitado} = req.body;
+        const {NombreTipoUsuario,DescripcionTipoUsuario,Habilitado} = req.body;
 
         let tipoUsuario = await TipoUsuario.findOne({ NombreTipoUsuario });
         if (tipoUsuario) throw new Error("Tipo Usuario ya registrado 😒");
 
-        tipoUsuario = new TipoUsuario({NombreTipoUsuario,DescripcionTipoUsuario,IDPAGINA,Habilitado });
+        tipoUsuario = new TipoUsuario({NombreTipoUsuario,DescripcionTipoUsuario,Habilitado });
         await tipoUsuario.save();
        
        

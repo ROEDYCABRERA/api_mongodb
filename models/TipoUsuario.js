@@ -11,9 +11,6 @@ const tipoUsuarioSchema = new Schema({
         type: String,
         required: [true, "La Descripcion Tipo Usuario es requerido"],
     },
-    IDPAGINA:  [{
-        type: String
-    }],
     Habilitado: {
         type: Number,
         required: true

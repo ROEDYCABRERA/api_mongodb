@@ -14,7 +14,7 @@ const tipoUsuarioSchema = new Schema({
     IDPAGINA:  [{
         type: String
     }],
-    Habilidato: {
+    Habilitado: {
         type: Number,
         required: true
     }

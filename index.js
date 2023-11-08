@@ -77,9 +77,9 @@ app.use(fileUpload({
 //  NombreTipoUsuario: 'administrador',
 //     DescripcionTipoUsuario:'Gerente',
 //      IDPAGINA:'1',
-//      Habilidato:'1'
-//   })
-//  console.log('creado',tipoUsuario)
+//      Habilitado:0
+//     })
+//   console.log('creado',tipoUsuario)
 //  const persona= await Persona.create({
 //     Nombre: 'JOSUE ADIEL',
 //     ApPaterno:'CABRERA',

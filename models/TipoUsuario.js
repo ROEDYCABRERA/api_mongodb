@@ -13,7 +13,11 @@ const tipoUsuarioSchema = new Schema({
     },
     IDPAGINA:  [{
         type: String
-    }]
+    }],
+    Habilidato: {
+        type: Number,
+        required: true
+    }
 });
 
 export const TipoUsuario = model("TipoUsuario", tipoUsuarioSchema);

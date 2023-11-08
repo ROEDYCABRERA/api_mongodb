@@ -74,10 +74,11 @@ app.use(fileUpload({
 //  console.log('creado',pagina7)
 //  console.log('creado',pagina8)
 // const tipoUsuario= await TipoUsuario.create({
-//     NombreTipoUsuario: 'administrador',
+//  NombreTipoUsuario: 'administrador',
 //     DescripcionTipoUsuario:'Gerente',
-//     IDPAGINA:'1'
-//  })
+//      IDPAGINA:'1',
+//      Habilidato:'1'
+//   })
 //  console.log('creado',tipoUsuario)
 //  const persona= await Persona.create({
 //     Nombre: 'JOSUE ADIEL',

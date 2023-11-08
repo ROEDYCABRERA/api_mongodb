@@ -48,6 +48,42 @@ export const remove = async (req, res) => {
         return res.status(500).json({ error: "Error de servidor" });
     }
 };
+export const getID = async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const tipoUsuario = await TipoUsuario.aggregate(
+            [
+                
+                {$match: { _id: ObjectId(req.params.id) }},
+            
+                {$project:
+                { 
+                    
+                    NombreTipoUsuario:1,
+                    DescripcionTipoUsuario:1,
+                   
+
+                }
+                }
+                
+              
+            ]
+
+        )
+        if (tipoUsuario=="") return res.status(404).json({ error: "No existe el tipo Usuario" })
+        return res.json(tipoUsuario);
+
+   
+    } catch (error) {
+        console.log(error);
+        if (error.kind === "ObjectId") {
+            return res.status(403).json({ error: "Formato id incorrecto" });
+        }
+        return res.status(500).json({ error: "error de servidor" });
+    }
+};
+
 export const update =async(req,res) =>{
    
     try {

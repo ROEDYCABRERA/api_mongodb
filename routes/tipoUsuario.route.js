@@ -2,6 +2,7 @@ import {Router} from "express";
 import {
     register,
     getDatos,
+    getID,
     update,
     remove
 
@@ -11,8 +12,9 @@ import { requireToken } from "../middlewares/requireToken.js";
 const router = Router();
 
 router.post("/register", bodyTipoUsuarioValidator,register);
+router.get("/listar",getDatos);
 router.put("/:id",paramTipoUsuarioValidator,bodyTipoUsuarioValidator,update);
 router.delete("/:id" ,paramTipoUsuarioValidator,remove);
-router.get("/listar",getDatos);
+router.get("/:id",paramTipoUsuarioValidator,getID);
 
 export default router;

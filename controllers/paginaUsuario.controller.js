@@ -18,11 +18,11 @@ export const register =async(req,res) =>{
     try {
         const {NombreTipoUsuario,DescripcionTipoUsuario,IDPAGINA,Habilitado} = req.body;
 
-        let tipoUsuario = await TipoUsuario.findOne({ NombreTipoUsuario });
-        if (tipoUsuario) throw new Error("Tipo Usuario ya registrado 😒");
+        let paginaTipoUsuario = await PaginaTipoUsuario.findOne({ NombreTipoUsuario });
+        if (paginaTipoUsuario) throw new Error("Tipo Usuario ya registrado 😒");
 
-        tipoUsuario = new TipoUsuario({NombreTipoUsuario,DescripcionTipoUsuario,IDPAGINA,Habilitado });
-        await tipoUsuario.save();
+        paginaTipoUsuario = new TipoUsuario({NombreTipoUsuario,DescripcionTipoUsuario,IDPAGINA,Habilitado });
+        await paginaTipoUsuario.save();
        
        
         return res.json({ ok: true });
@@ -35,12 +35,12 @@ export const register =async(req,res) =>{
 export const remove = async (req, res) => {
     try {
         const {id} = req.params;
-        const tipoDocumento = await TipoDocumento.findById(id);
+        const paginaTipoUsuario = await PaginaTipoUsuario.findById(id);
        // console.log(link);
-        if (!tipoDocumento) return res.status(404).json({ error: "no existe el Tipo de Documento" });
+        if (!paginaTipoUsuario) return res.status(404).json({ error: "no existe el Tipo de Documento" });
       
        
-        await tipoDocumento.remove();
+        await paginaTipoUsuario.remove();
         return res.json({ ok: true });
     } catch (error) {
         console.log(error);
@@ -53,16 +53,17 @@ export const getID = async (req, res) => {
     try {
         const {id} = req.params;
 
-        const tipoUsuario = await TipoUsuario.aggregate(
+        const paginaTipoUsuario = await PaginaTipoUsuario.aggregate(
             [
                 
                 {$match: { _id: ObjectId(req.params.id) }},
             
                 {$project:
                 { 
-                    
-                    NombreTipoUsuario:1,
-                    DescripcionTipoUsuario:1,
+                    _id:1,
+                    Pagina:1,
+                    TipoUsuario:1,
+                    Habilitado:1
                    
 
                 }
@@ -72,8 +73,8 @@ export const getID = async (req, res) => {
             ]
 
         )
-        if (tipoUsuario=="") return res.status(404).json({ error: "No existe el tipo Usuario" })
-        return res.json(tipoUsuario);
+        if (paginaTipoUsuario=="") return res.status(404).json({ error: "No existe Pagina tipo Usuario" })
+        return res.json(paginaTipoUsuario);
 
    
     } catch (error) {

@@ -1,5 +1,5 @@
 import { TipoUsuario } from "../models/TipoUsuario.js";
-
+import { MongoClient, ObjectId } from 'mongodb';
 
 export const getDatos = async (req, res) => {
     try {

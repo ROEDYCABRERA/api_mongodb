@@ -23,9 +23,10 @@ export const register =async(req,res) =>{
 
         tipoUsuario = new TipoUsuario({NombreTipoUsuario,DescripcionTipoUsuario,IDPAGINA,Habilitado });
         await tipoUsuario.save();
-
-       
+        console.log(tipoUsuario);
+      
         return res.json({ ok: true });
+
     } catch (error) {
         console.log(error);
         return res.status(403).json({ error: error.message });

@@ -18,8 +18,8 @@ export const register =async(req,res) =>{
     try {
         const {Idpagina,TipoUsuario,Habilitado} = req.body;
 
-        let paginaTipoUsuario = await PaginaTipoUsuario.findOne({ NombreTipoUsuario });
-        if (paginaTipoUsuario) throw new Error("Tipo Usuario ya registrado 😒");
+        let paginaTipoUsuario = await PaginaTipoUsuario.findOne({ TipoUsuario });
+        if (paginaTipoUsuario) throw new Error("Tipo Pagina Usuario ya registrado 😒");
 
         paginaTipoUsuario = new TipoUsuario({Idpagina,TipoUsuario,Habilitado });
         await paginaTipoUsuario.save();

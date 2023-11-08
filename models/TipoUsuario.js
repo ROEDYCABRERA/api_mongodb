@@ -11,9 +11,9 @@ const tipoUsuarioSchema = new Schema({
         type: String,
         required: [true, "La Descripcion Tipo Usuario es requerido"],
     },
-    IDPAGINA: {
+    PAGINA:  [{
         type: String
-    }
+    }]
 });
 
 export const TipoUsuario = model("TipoUsuario", tipoUsuarioSchema);

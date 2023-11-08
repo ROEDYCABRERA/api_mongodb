@@ -1,13 +1,13 @@
-import { TipoUsuario } from "../models/TipoUsuario.js";
+import { PaginaTipoUsuario } from "../models/PaginaUsuario.js";
 import { MongoClient, ObjectId } from 'mongodb';
 
 export const getDatos = async (req, res) => {
     try {
         
-        const tipoUsuario = await TipoUsuario.find().sort( { NombreTipoUsuario: 1 } )
+        const paginaTipoUsuario = await PaginaTipoUsuario.find().sort( { Pagina: 1 } )
 
 
-        return res.json(tipoUsuario);
+        return res.json(paginaTipoUsuario);
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: "Error de servidor" });

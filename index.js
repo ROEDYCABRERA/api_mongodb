@@ -16,6 +16,7 @@ import libroRouter from "./routes/libro.route.js";
 import usuarioRouter from "./routes/usuario.route.js";
 import tipousuarioRouter from "./routes/tipoUsuario.route.js";
 import paginaRouter from "./routes/pagina.route.js";
+import paginatipousuarioRouter from "./routes/paginatipoUsuario.route.js";
 import cookieParser from "cookie-parser";
 import { User } from "./models/User.js";
 import { TipoDocumento } from "./models/TipoDocumento.js";
@@ -35,6 +36,7 @@ import { TipoLibro } from "./models/TipoLibro.js";
 import { TipoUsuario } from "./models/TipoUsuario.js";
 import { Usuario } from "./models/Usuario.js";
 import { Pagina } from "./models/Pagina.js";
+import { PaginaTipoUsuario } from "./models/PaginaUsuario.js";
 const app = express();
 
 app.use(fileUpload({
@@ -57,17 +59,24 @@ app.use(fileUpload({
 //     Mensaje: 'Libro'
 //  })
 //  const pagina6= await Pagina.create({
-//     Mensaje: 'Consulta'
+//    Mensaje: 'Configuracion'
+// })
+// const pagina7= await TipoUsuario.create({
+//     NombreTipoUsuario: 'programador',
+//     DescripcionTipoUsuario:'ingeniero',
+//     IDPAGINA:'1',
+//     Habilitado:1
 //  })
-//  const pagina7= await Pagina.create({
-//     Mensaje: 'Tipo Usuario'
-//  })
-//  const pagina8= await Pagina.create({
-//     Mensaje: 'Usuario'
-//  })
-// console.log('creado',pagina)
-//  console.log('creado',pagina2)
-//  console.log('creado',pagina3)
+//   const pagina8= await PaginaTipoUsuario.create({
+//     Pagina: pagina6.id,
+//     TipoUsuario:pagina7.id,
+//     Habilitado:1
+
+
+//   })
+// console.log('creado',pagina6)
+//  console.log('creado',pagina7)
+// console.log('creado',pagina8)
 //  console.log('creado',pagina4)
 //  console.log('creado',pagina5)
 //  console.log('creado',pagina6)
@@ -221,6 +230,7 @@ app.use("/api/v1/libro", libroRouter);
 app.use("/api/v1/usuario", usuarioRouter);
 app.use("/api/v1/tipousuario", tipousuarioRouter);
 app.use("/api/v1/pagina", paginaRouter);
+app.use("/api/v1/paginatipousuario", paginatipousuarioRouter);
 //app.use("/api/v1/links", linkRouter);
 //app.use(express.static("public"));
 const PORT = process.env.PORT || 5000;

@@ -139,7 +139,7 @@ export const bodyTipoUsuarioValidator = [
   validationResultExpress,
 ];
 export const bodyPaginaTipoUsuarioValidator = [
-    body("Idpagina", "Formato de Idpagina incorrecto")
+    body("Pagina", "Formato de Pagina incorrecto")
       .notEmpty()
       .isLength({ max: 50 }),
     body("TipoUsuario", "Formato de TipoUsuario incorrecto")

@@ -3,6 +3,7 @@ import {
     login,
     register,
     infoUser,
+    update,
     getID,
     getDatos,
     refreshToken,
@@ -16,7 +17,7 @@ const router = Router();
 
 router.post("/register", bodyUsuarioValidator,register);
 router.post("/login", bodyLoginUsuarioValidator,login);
-
+router.put("/update", bodyUsuarioValidator,update);
 router.get("/logout", logout);
 router.get("/listar", getDatos);
 router.get("/:id" ,paramUsuarioValidator,getID);

@@ -36,6 +36,31 @@ export const register =async(req,res) =>{
         return res.status(403).json({ error: error.message });
     }
 };
+export const update =async(req,res) =>{
+   
+    try {
+       
+        const {id,NombreUsuario,Persona,TipoUsuario,password} = req.body;
+        const user = await Usuario.findById(id);
+        if (!user) return res.status(404).json({ error: "No existe el user" });
+
+       
+        user.NombreUsuario = NombreUsuario;
+        user.Persona=Persona;
+        user.TipoUsuario=TipoUsuario;
+        user.password=password;
+        await user.save();
+
+        // Generar token
+        // const { token, expiresIn } = generateToken(user.id);
+        // generateRefreshToken(user.id, res);
+
+        return res.json({ok: true});
+    } catch (error) {
+        console.log(error);
+        return res.status(403).json({ error: error.message });
+    }
+};
 
 export const login = async (req, res) => {
     try {

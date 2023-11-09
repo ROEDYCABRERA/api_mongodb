@@ -30,7 +30,7 @@ export const register =async(req,res) =>{
         const { token, expiresIn } = generateToken(user.id);
         generateRefreshToken(user.id, res);
 
-        return res.json({ token, expiresIn });
+        return res.json({ token, expiresIn,ok: true});
     } catch (error) {
         console.log(error);
         return res.status(403).json({ error: error.message });

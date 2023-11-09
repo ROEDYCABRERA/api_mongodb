@@ -1,4 +1,4 @@
-
+import { MongoClient, ObjectId } from 'mongodb';
 import { Usuario } from "../models/Usuario.js";
 import {
     generateToken,
@@ -87,20 +87,47 @@ export const login = async (req, res) => {
 export const getID = async (req, res) => {
     try {
         const {id} = req.params;
-        const user = await User.findById(id)
-        .populate({ path: 'tipodocumento', model: 'TipoDocumento'})
-        .populate({ path: 'procedimiento', model: 'Procedure'})
-        .populate({ path: 'vehiculo', populate: { path: 'tipovehiculo marca foto'}})
- 
-        .populate(
-            [{
-            path: 'vehiculo', 
-            populate: { path: 'historia', populate: [{ path: 'detalles'}] }
-            }])
-        .exec();
-        if (!user) return res.status(404).json({ error: "No existe el usuario" })
-    
-        return res.json(user);
+       
+      
+        const usuario = await Usuario.aggregate(
+            [
+                
+                {$match: { _id: ObjectId(req.params.id) }},
+               
+                {$lookup:{from:'personas',localField:'Persona',foreignField:'_id', as:'Persona'}},
+                {$lookup:{from:'tipousuarios',localField:'TipoUsuario',foreignField:'_id', as:'Tipousuarios'}},
+                {$unwind: '$Persona'},
+                {
+                    $addFields: {
+                        NombrePersona: '$Persona.Nombre'
+                        
+                    }
+                 },
+                 {$unwind: '$Tipousuarios'},
+                {
+                    $addFields: {
+                        idtipousuario: '$Tipousuarios._id'
+                        
+                    }
+                 },
+                {$project:
+                { 
+                    NombreUsuario:1,
+                    NombrePersona:1,
+                    idtipousuario:1
+                   
+                   
+                   
+
+                }
+                }
+                
+              
+            ]
+
+        )
+        if (usuario=="") return res.status(404).json({ error: "No existe el usuario" })
+        return res.json(usuario);
 
    
     } catch (error) {

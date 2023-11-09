@@ -57,8 +57,17 @@ export const remove = async (req, res) => {
         if (!tipoUsuario) return res.status(404).json({ error: "no existe el Tipo de Usuario" });
       
        
-        await tipoUsuario.remove();
-        return res.json({ ok: true });
+         tipoUsuario.remove((err, usuarioNew) => {
+            if (err) {
+              return res.status(401).json({
+                ok: false,
+                err,
+              });
+            }
+    
+            return res.status(201).json({ ok: true, tipoUsuario: usuarioNew._id });
+          });
+       
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId")

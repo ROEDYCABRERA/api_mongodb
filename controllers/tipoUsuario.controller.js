@@ -1,4 +1,5 @@
 import { TipoUsuario } from "../models/TipoUsuario.js";
+import { PaginaTipoUsuario } from "../models/PaginaUsuario.js";
 import { MongoClient, ObjectId } from 'mongodb';
 
 export const getDatos = async (req, res) => {
@@ -16,17 +17,34 @@ export const getDatos = async (req, res) => {
 export const register =async(req,res) =>{
    
     try {
-        const {NombreTipoUsuario,DescripcionTipoUsuario,Habilitado} = req.body;
+      const {
+        NombreTipoUsuario,
+        DescripcionTipoUsuario,
+        Habilitado,
+        Idpagina,
+      } = req.body;
 
-        let tipoUsuario = await TipoUsuario.findOne({ NombreTipoUsuario });
-        if (tipoUsuario) throw new Error("Tipo Usuario ya registrado 😒");
+      let tipoUsuario = await TipoUsuario.findOne({ NombreTipoUsuario });
+      if (tipoUsuario) throw new Error("Tipo Usuario ya registrado 😒");
 
-        tipoUsuario = new TipoUsuario({NombreTipoUsuario,DescripcionTipoUsuario,Habilitado });
-        await tipoUsuario.save();
-       
-       
-        return res.json({ ok: true });
+      tipoUsuario = new TipoUsuario({
+        NombreTipoUsuario,
+        DescripcionTipoUsuario,
+        Habilitado,
+      });
+      tipoUsuario.save((err, usuarioNew) => {
+        if (err) {
+          return res.status(401).json({
+            ok: false,
+            err,
+          });
+        }
 
+        return res.status(201).json({ ok: true, tipoUsuario: usuarioNew._id });
+      });
+
+     
+    
     } catch (error) {
         console.log(error);
         return res.status(403).json({ error: error.message });

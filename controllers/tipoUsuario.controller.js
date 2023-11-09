@@ -106,18 +106,20 @@ export const update =async(req,res) =>{
    
     try {
 
-        const {id} = req.params;
-        let {Descripcion} = req.body;
+        //const {id} = req.params;
+        let {id,NombreTipoUsuario,DescripcionTipoUsuario,Habilitado} = req.body;
 
      
-        const tipoDocumento = await TipoDocumento.findById(id);
+        const tipoUsuario = await TipoUsuario.findById(id);
 
-        if (!tipoDocumento) return res.status(404).json({ error: "No existe el Tipo de Documento" });
+        if (!tipoUsuario) return res.status(404).json({ error: "No existe el Tipo de Usuario" });
 
 
       
-        tipoDocumento.Descripcion = Descripcion;
-        await tipoDocumento.save();
+        tipoUsuario.NombreTipoUsuario = NombreTipoUsuario;
+        tipoUsuario.DescripcionTipoUsuario = DescripcionTipoUsuario;
+        tipoUsuario.Habilitado = Habilitado;
+        await tipoUsuario.save();
 
        
         return res.json({ ok: true });

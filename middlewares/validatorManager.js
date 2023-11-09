@@ -138,6 +138,18 @@ export const bodyTipoUsuarioValidator = [
     .isLength({ max: 50 }),
   validationResultExpress,
 ];
+export const bodyPaginaTipoUsuarioValidator = [
+    body("Idpagina", "Formato de Idpagina incorrecto")
+      .notEmpty()
+      .isLength({ max: 50 }),
+    body("TipoUsuario", "Formato de TipoUsuario incorrecto")
+      .notEmpty()
+      .isLength({ max: 50 }),
+      body("Habilitado", "Formato de Habilitado incorrecto")
+      .notEmpty()
+      .isLength({ max: 1 }),
+    validationResultExpress,
+  ];
 
 
 export const paramTipoDocumentoValidator = [

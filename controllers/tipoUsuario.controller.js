@@ -20,8 +20,7 @@ export const register =async(req,res) =>{
       const {
         NombreTipoUsuario,
         DescripcionTipoUsuario,
-        Habilitado,
-        Idpagina,
+        Habilitado
       } = req.body;
 
       let tipoUsuario = await TipoUsuario.findOne({ NombreTipoUsuario });

@@ -166,6 +166,13 @@ export const paramTipoUsuarioValidator = [
         .escape(),
     validationResultExpress,
 ];
+export const paramPaginaTipoUsuarioValidator = [
+    param("id", "Formato no válido (expressValidator)")
+        .trim()
+        .notEmpty()
+        .escape(),
+    validationResultExpress,
+];
 export const paramTipoLibroValidator = [
     param("id", "Formato no válido (expressValidator)")
         .trim()

@@ -53,21 +53,29 @@ export const remove = async (req, res) => {
     try {
         const {id} = req.params;
         const tipoUsuario = await TipoUsuario.findById(id);
+      
        // console.log(link);
         if (!tipoUsuario) return res.status(404).json({ error: "no existe el Tipo de Usuario" });
       
-       
-         tipoUsuario.remove((err, usuarioNew) => {
+        const deletedTipoPaginaUsuario = await PaginaTipoUsuario.deleteMany({ TipoUsuario:tipoUsuario._id   })
+        const deletedCount=deletedTipoPaginaUsuario.deletedCount
+        console.log({ deletedCount })
+        if(deletedCount==1){
+          tipoUsuario.remove((err, usuarioNew) => {
             if (err) {
-              return res.status(401).json({
-                ok: false,
-                err,
-              });
+             return res.status(401).json({
+               ok: false,
+               err,
+             });
             }
-    
-            return res.status(201).json({ ok: true, tipoUsuario: usuarioNew._id });
-          });
+              
+           return res.status(201).json({ ok: true, tipoUsuario: usuarioNew._id });
+        });
+        }else{
+          return res.status(404).json({ error: "Error en Eliminar Pagina Tipo Usuario" });
+        }
        
+        
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId")

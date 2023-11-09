@@ -35,13 +35,15 @@ export const register =async(req,res) =>{
 export const remove = async (req, res) => {
     try {
         const {TipoUsuario} = req.params;
-        const paginaTipoUsuario = PaginaTipoUsuario.findOne({TipoUsuario});
+        
+        const paginaTipoUsuario = await PaginaTipoUsuario.deleteOne({TipoUsuario:TipoUsuario})
        // console.log(link);
         if (!paginaTipoUsuario) return res.status(404).json({ error: "no existe el Tipo de Pagina Usuario" });
       
        
-        await paginaTipoUsuario.remove();
+     
         return res.json({ ok: true });
+       
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId")

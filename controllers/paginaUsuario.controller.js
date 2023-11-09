@@ -34,10 +34,10 @@ export const register =async(req,res) =>{
 };
 export const remove = async (req, res) => {
     try {
-        const {id} = req.params;
-        const paginaTipoUsuario = await PaginaTipoUsuario.findById(id);
+        const {TipoUsuario} = req.params;
+        const paginaTipoUsuario = PaginaTipoUsuario.findOne({TipoUsuario});
        // console.log(link);
-        if (!paginaTipoUsuario) return res.status(404).json({ error: "no existe el Tipo de Documento" });
+        if (!paginaTipoUsuario) return res.status(404).json({ error: "no existe el Tipo de Pagina Usuario" });
       
        
         await paginaTipoUsuario.remove();

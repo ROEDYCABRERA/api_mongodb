@@ -94,7 +94,7 @@ export const update =async(req,res) =>{
         let {Pagina,TipoUsuario,Habilitado} = req.body;
 
      
-        const paginaTipoUsuario = await PaginaTipoUsuario.findById(TipoUsuario);
+        const paginaTipoUsuario = await PaginaTipoUsuario.findOne({TipoUsuario});
 
         if (!paginaTipoUsuario) return res.status(404).json({ error: "No existe el Pagina Tipo de Usuario" });
 

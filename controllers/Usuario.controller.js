@@ -120,17 +120,26 @@ export const getDatos = async (req, res) => {
                 
 
                 {$lookup:{from:'personas',localField:'Persona',foreignField:'_id', as:'Persona'}},
-              
+                {$lookup:{from:'tipousuarios',localField:'TipoUsuario',foreignField:'_id', as:'Tipousuarios'}},
                 {$unwind: '$Persona'},
                 {
                     $addFields: {
                         NombrePersona: '$Persona.Nombre'
+                        
+                    }
+                 },
+                 {$unwind: '$Tipousuarios'},
+                {
+                    $addFields: {
+                        idtipousuario: '$Tipousuarios._id'
+                        
                     }
                  },
                 {$project:
                 { 
                     NombreUsuario:1,
-                    NombrePersona:1
+                    NombrePersona:1,
+                    idtipousuario:1
                    
                    
                    

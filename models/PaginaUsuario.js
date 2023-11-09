@@ -3,10 +3,13 @@ const { Schema, model } = mongoose;
 
 const paginatipoUsuarioSchema = new Schema({
    
-    Pagina:{
-        type: Schema.Types.ObjectId,
-        ref: 'Pagina'
-    },
+ 
+    Pagina:[{
+           type: String,
+           required: [true, "La Pagina es requerido"],
+        }
+    ]
+    ,
     TipoUsuario:{
         type: Schema.Types.ObjectId,
         ref: 'TipoUsuario'

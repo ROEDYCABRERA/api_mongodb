@@ -52,12 +52,12 @@ export const register =async(req,res) =>{
 export const remove = async (req, res) => {
     try {
         const {id} = req.params;
-        const tipoDocumento = await TipoDocumento.findById(id);
+        const tipoUsuario = await TipoUsuario.findById(id);
        // console.log(link);
-        if (!tipoDocumento) return res.status(404).json({ error: "no existe el Tipo de Documento" });
+        if (!tipoUsuario) return res.status(404).json({ error: "no existe el Tipo de Usuario" });
       
        
-        await tipoDocumento.remove();
+        await tipoUsuario.remove();
         return res.json({ ok: true });
     } catch (error) {
         console.log(error);

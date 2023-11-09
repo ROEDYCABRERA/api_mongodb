@@ -119,10 +119,20 @@ export const update =async(req,res) =>{
         tipoUsuario.NombreTipoUsuario = NombreTipoUsuario;
         tipoUsuario.DescripcionTipoUsuario = DescripcionTipoUsuario;
         tipoUsuario.Habilitado = Habilitado;
-        await tipoUsuario.save();
+        tipoUsuario.save((err, usuarioNew) => {
+            if (err) {
+              return res.status(401).json({
+                ok: false,
+                err,
+              });
+            }
+    
+            return res.status(201).json({ ok: true, tipoUsuario: usuarioNew._id });
+          });
+    
 
        
-        return res.json({ ok: true });
+      
     } catch (error) {
         console.log(error);
         if (error.kind === "ObjectId") {

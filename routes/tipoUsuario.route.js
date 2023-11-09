@@ -13,7 +13,7 @@ const router = Router();
 
 router.post("/register", bodyTipoUsuarioValidator,register);
 router.get("/listar",getDatos);
-router.put("/:id",paramTipoUsuarioValidator,bodyTipoUsuarioValidator,update);
+router.put("/update",bodyTipoUsuarioValidator,update);
 router.delete("/:id" ,paramTipoUsuarioValidator,remove);
 router.get("/:id",paramTipoUsuarioValidator,getID);
 

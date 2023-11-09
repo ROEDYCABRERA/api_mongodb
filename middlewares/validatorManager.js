@@ -41,12 +41,33 @@ export const bodyLoginValidator = [
     body("password", "Mínimo 6 carácteres").trim().isLength({ min: 6 }),
     validationResultExpress,
 ];
-
+export const bodyLoginUsuarioValidator = [
+    body("NombreUsuario", "Formato de Nombre Usuario incorrecto")
+    .notEmpty()
+    .isLength({ max: 30 }),
+    body("password", "Mínimo 6 carácteres").trim().isLength({ min: 6 }),
+    validationResultExpress,
+];
 export const bodyRegisterValidator = [
     body("email", "Formato de email incorrecto")
         .trim()
         .isEmail()
         .normalizeEmail(),
+    body("password", "Mínimo 6 carácteres").trim().isLength({ min: 6 }),
+    body("password", "Formato de password incorrecta").custom(
+        (value, { req }) => {
+            if (value !== req.body.password) {
+                throw new Error("No coinciden las contraseñas");
+            }
+            return value;
+        }
+    ),
+    validationResultExpress,
+];
+export const bodyUsuarioValidator = [
+    body("NombreUsuario", "Formato de Nombre Usuario incorrecto")
+         .notEmpty()
+         .isLength({ max: 30 }),
     body("password", "Mínimo 6 carácteres").trim().isLength({ min: 6 }),
     body("password", "Formato de password incorrecta").custom(
         (value, { req }) => {

@@ -36,7 +36,7 @@ export const remove = async (req, res) => {
     try {
         const {TipoUsuario} = req.params;
         
-        const paginaTipoUsuario = await PaginaTipoUsuario.deleteOne({TipoUsuario:TipoUsuario})
+        const paginaTipoUsuario = await PaginaTipoUsuario.findById(TipoUsuario)
        // console.log(link);
         if (!paginaTipoUsuario) return res.status(404).json({ error: "no existe el Tipo de Pagina Usuario" });
       

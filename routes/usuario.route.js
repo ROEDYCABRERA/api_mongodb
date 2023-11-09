@@ -10,12 +10,12 @@ import {
 } from "../controllers/Usuario.controller.js";
 import { requireToken } from "../middlewares/requireToken.js";
 import { requireRefreshToken } from "../middlewares/requireRefreshToken.js";
-import { bodyRegisterValidator,bodyLoginValidator,paramUsuarioValidator } from "../middlewares/validatorManager.js";
+import { bodyUsuarioValidator,bodyLoginUsuarioValidator,paramUsuarioValidator } from "../middlewares/validatorManager.js";
 
 const router = Router();
 
-router.post("/register", bodyRegisterValidator,register);
-router.post("/login", bodyLoginValidator,login);
+router.post("/register", bodyUsuarioValidator,register);
+router.post("/login", bodyLoginUsuarioValidator,login);
 
 router.get("/logout", logout);
 router.get("/listar", getDatos);

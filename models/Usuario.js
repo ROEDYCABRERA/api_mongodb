@@ -15,6 +15,10 @@ const UsuarioSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'TipoUsuario'
     },
+    password: {
+        type: String,
+        required: [true, "La contraseña es requerido"],
+    },
 });
 
 export const Usuario = model("Usuario", UsuarioSchema);

@@ -7,23 +7,23 @@ import {
 export const register =async(req,res) =>{
    
     try {
-        if (!req.files)
-        return res.status(400).send('No files were uploaded.');
+        // if (!req.files)
+        // return res.status(400).send('No files were uploaded.');
 
-        let imagen = req.files.imagen;
+        // let imagen = req.files.imagen;
 
-        imagen.mv(`uploads/${imagen.name}`, (err) => {
-            if (err)
-            return res.status(500).send(err);
+        // imagen.mv(`uploads/${imagen.name}`, (err) => {
+        //     if (err)
+        //     return res.status(500).send(err);
 
-        });
+        // });
        
-        const {nombre,apellido,direccion,telefono, email, password ,tipo_usuario,tipo_login} = req.body;
+        const {NombreUsuario,Persona,TipoUsuario,password} = req.body;
 
-        let user = await User.findOne({ email });
-        if (user) throw new Error("Email ya registrado 😒");
+        let user = await Usuario.findOne({ NombreUsuario });
+        if (user) throw new Error("Usuario ya registrado 😒");
 
-        user = new User({nombre,apellido,direccion,telefono,email, password ,tipo_usuario,tipo_login, imagen : imagen.name });
+        user = new Usuario({ NombreUsuario,Persona,TipoUsuario,password});
         await user.save();
 
         // Generar token

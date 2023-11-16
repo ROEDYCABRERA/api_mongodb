@@ -99,7 +99,8 @@ export const getID = async (req, res) => {
                 {$unwind: '$Persona'},
                 {
                     $addFields: {
-                        NombrePersona: '$Persona.Nombre'
+                        NombrePersona: '$Persona.Nombre',
+                        IdPersona: '$Persona._id'
                         
                     }
                  },
@@ -114,7 +115,8 @@ export const getID = async (req, res) => {
                 { 
                     NombreUsuario:1,
                     NombrePersona:1,
-                    idtipousuario:1
+                    idtipousuario:1,
+                    IdPersona:1
                    
                    
                    

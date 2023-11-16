@@ -140,30 +140,34 @@ app.use(fileUpload({
 //  console.log('creado',persona)
 
 
-// const procedimiento= await Procedure.create({
+//  const procedimiento= await Procedure.create({
 //     descripcion: 'INSTALACION',
 //     precio:0
 
+//  });
+// const tipoDocumento= await TipoDocumento.create({
+//      Descripcion: 'PASAPORTE'
+
 // });
 // const tipovehiculo= await TipoVehiculo.create({
-//     Descripcion: 'TIPO'
+//      Descripcion: 'TIPO'
 
-// });
-// const marca= await Marca.create({
-//     Descripcion: 'HONDA'
+//  });
+//  const marca= await Marca.create({
+//      Descripcion: 'HONDA'
 
-// });
-// const foto= await VehiculoFoto .create({
-//     imagen: 'foto'
+//  });
+//  const foto= await VehiculoFoto .create({
+//      imagen: 'foto'
 
-// });
+//  });
 
-// const detalles= await Detalles .create({
-//     Procedimiento: 'cambio de aceite',
-//     ManoObra: 100,
-//     PrecioRepuesto: 100,
-//     Observacion: 'obervacion'
-// });
+//  const detalles= await Detalles .create({
+//      Procedimiento: 'cambio de aceite',
+//      ManoObra: 100,
+//      PrecioRepuesto: 100,
+//      Observacion: 'obervacion'
+//  });
 // const historia= await Historia .create({
 //     Mileage: 0,
 //     Remarks: 'Remarks',
@@ -174,24 +178,24 @@ app.use(fileUpload({
 // const vehiculo= await Vehiculo.create({
 //     Descripcion: 'VEHICULO',
 //     tipovehiculo:tipovehiculo._id,
-//     marca:marca._id,
-//     foto:foto._id,
-//     historia:historia._id,
-
-// });
+//      marca:marca._id,
+//      foto:foto._id,
+//      historia:historia._id,
+//  });
 
 // const usuarioInicial= await User.create({
-//     nombre: 'ROEDY',
-//     apellido: 'CABRERA',
-//     direccion :'LIMA',
-//     email:'cabrera1545585lzz1@gmail.com',
-//     password: '123456',
-//     tipo_usuario : 'admin',
-//     tipo_login :'admin',
-//     tipodocumento:tipoDocumento._id,
-//     procedimiento:procedimiento._id,
-//     vehiculo:vehiculo._id,
-// });
+//      nombre: 'ROEDY',
+//      apellido: 'CABRERA',
+//      direccion :'LIMA',
+//      email:'admin@gmail.com',
+//      password: '123456',
+//      tipo_usuario : 'admin',
+//      tipo_login :'admin',
+//      telefono:'974590099',
+//      tipodocumento:tipoDocumento._id,
+//      procedimiento:procedimiento._id,
+//      vehiculo:vehiculo._id,
+//      });
 
 // console.log('creado',usuarioInicial)
 // const whiteList = [process.env.ORIGIN1];

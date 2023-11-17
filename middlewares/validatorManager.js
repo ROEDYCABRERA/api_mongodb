@@ -65,19 +65,29 @@ export const bodyRegisterValidator = [
     validationResultExpress,
 ];
 export const bodyUsuarioValidator = [
-    body("NombreUsuario", "Formato de Nombre Usuario incorrecto")
-         .notEmpty()
-         .isLength({ max: 30 }),
-    body("password", "Mínimo 6 carácteres").trim().isLength({ min: 6 }),
-    body("password", "Formato de password incorrecta").custom(
-        (value, { req }) => {
-            if (value !== req.body.password) {
-                throw new Error("No coinciden las contraseñas");
-            }
-            return value;
-        }
-    ),
-    validationResultExpress,
+  body("NombreUsuario", "Formato de Nombre Usuario incorrecto")
+    .notEmpty()
+    .isLength({ max: 30 }),
+    body("Persona", "Formato no válido (expressValidator)")
+    .trim()
+    .notEmpty()
+    .escape(),
+  validationResultExpress,
+  body("TipoUsuario", "Formato no válido (expressValidator)")
+    .trim()
+    .notEmpty()
+    .escape(),
+  validationResultExpress,
+  body("password", "Mínimo 6 carácteres").trim().isLength({ min: 6 }),
+  body("password", "Formato de password incorrecta").custom(
+    (value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("No coinciden las contraseñas");
+      }
+      return value;
+    }
+  ),
+  validationResultExpress,
 ];
 export const paramNanoLinkValidator = [
     param("nanoLink", "Formato no válido (expressValidator)")

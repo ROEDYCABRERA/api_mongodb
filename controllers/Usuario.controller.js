@@ -64,10 +64,10 @@ export const update =async(req,res) =>{
 
 export const login = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { NombreUsuario, password } = req.body;
         //console.log(req.body);
       
-        let user = await User.findOne({ email });
+        let user = await Usuario.findOne({ NombreUsuario });
         if (!user || !(await user.comparePassword(password)))
             //throw new Error("Email or password is incorrect");
             return res.status(403).json({ error: "No existe este usuario" });
@@ -87,8 +87,7 @@ export const login = async (req, res) => {
 export const getID = async (req, res) => {
     try {
         const {id} = req.params;
-       
-      
+    
         const usuario = await Usuario.aggregate(
             [
                 

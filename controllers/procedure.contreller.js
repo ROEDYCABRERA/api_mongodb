@@ -52,8 +52,8 @@ export const update =async(req,res) =>{
    
     try {
 
-        //const {id} = req.params;
-        let {id, descripcion,precio } = req.body;
+        const {id} = req.params;
+        let {descripcion,precio } = req.body;
 
      
         const procedure = await Procedure.findById(id);

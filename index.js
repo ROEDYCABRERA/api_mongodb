@@ -37,18 +37,8 @@ import { TipoUsuario } from "./models/TipoUsuario.js";
 import { Usuario } from "./models/Usuario.js";
 import { Pagina } from "./models/Pagina.js";
 import { PaginaTipoUsuario } from "./models/PaginaUsuario.js";
-import { launch } from 'puppeteer';
-import {setTimeout} from "node:timers/promises";
 const app = express();
-(async () => {
-    const browser =  await launch({headless:false});
-    const page = await browser.newPage();
-    await page.goto("https://web.whatsapp.com/");
-    await setTimeout(30000);
-    await page.screenshot({path:'amazon1.jpg'});
-    //await browser.close();
-  })();
-  
+
 
 app.use(fileUpload({
     //useTempFiles : true,
